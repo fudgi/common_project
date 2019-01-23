@@ -1,0 +1,41 @@
+.no-category {
+    font-size: 0.9rem;
+    color: black;
+}
+
+.no-category:hover {
+    text-decoration: none;
+    color: rgb(164, 109, 201);
+    background-color: transparent;
+    border: 1px solid rgb(164, 109, 201);
+    border-radius: 50px;
+}
+
+.purp-gap div:first-of-type{
+    border-bottom: 1px solid #7B3CA5;
+}
+
+.selected-menu {
+    background-color: rgb(164, 109, 201);
+    color:white;
+}
+
+.input-hollow {
+    color: rgb(164, 109, 201);
+    background-color: transparent;
+    border: 1px solid rgb(164, 109, 201);
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
+.input-hollow:hover {
+    cursor: pointer;
+}
+
+.input-hollow input {
+    color: rgb(164, 109, 201);
+    border: 0;
+}
+main input:focus {
+    outline: 0;
+    box-shadow: 0 0 0px 0px rgb(255, 255, 255);
+} 
