@@ -13,19 +13,17 @@ class RespondComponent extends React.Component {
         this.ConfirmButton = this.ConfirmButton.bind(this);
     }
     DeclineButton(e){
-        alert("Отказать");
-        //отправка отказа по фетч respond_id
-        // Fetch.getData(path,{respond_id:this.props.items.respond_id, state: 0})
-        // .this(() => this.props.updateHandle())
-        // .catch(() => alert("Ошибка удаления"))
+        Fetch.getData('react-app-07/src/screens/content/respond/php/answerToMeDecline.php',
+        {respond_id:this.props.item.id, request_id: this.props.item.request_id})
+        .then(() => this.props.updateComponentHandle())
+        .catch(() => alert("Ошибка"))
     }
 
     ConfirmButton(e){
-        alert("Подтвердить");
-        //отправка согласия по фетч respond_id
-        // Fetch.getData(path,{respond_id:this.props.items.respond_id, state: 1})
-        // .this(() => this.props.updateHandle())
-        // .catch(() => alert("Ошибка подтверждения"))
+        Fetch.getData('react-app-07/src/screens/content/respond/php/answerToMeApprove.php',
+        {respond_id:this.props.item.id,  request_id: this.props.item.request_id})
+        .then(() => {this.props.updateComponentHandle()})
+        .catch(() => alert("Ошибка подтверждения"))
     }
 
     render(){

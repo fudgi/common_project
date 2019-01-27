@@ -43,8 +43,8 @@ class Profile extends React.Component {
                 <main className="mx-auto col-6  mt-3 rounded bg-white">
                     <form className="mx-auto col-8 col-md-6 col-xl-6 p-4 needs-validation">
                         <div className="avatar text-center">
-                                <img className="rounded-circle" src={avatar} alt="Avatar" width="140" height="140"/>
-                                <img src={this.state.user_data.photo} className="under-avatar"  width="50"/>
+                                <img className="rounded-circle" src={this.state.user_data.photo} alt="Avatar" width="140" height="140"/>
+                                <img src={editPhoto} className="under-avatar"  width="50"/>
                         </div>
 
                         <div className="rating-bar text-center mt-3">
@@ -61,10 +61,10 @@ class Profile extends React.Component {
                         </div>
                         
                         <p className="text-muted m-0 mt-4">Имя</p>
-                        <p className="text-field px-0">{this.state.user_data.user_name}</p>
+                        <p className="text-field px-0">{this.state.user_data.username}</p>
 
                         <p className="text-muted m-0 mt-4">Телефон</p>
-                        <p className="text-field px-0">{this.state.user_data.phone}</p>
+                        <p className="text-field px-0">{this.state.user_data.telephone}</p>
 
                         <p className="text-muted m-0 mt-4">Email</p>
                         <p className="text-field px-0">{this.state.user_data.email}</p>

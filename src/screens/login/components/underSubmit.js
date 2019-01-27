@@ -8,7 +8,7 @@ class UnderSubmit extends React.Component{
                     <input class="custom-control-input" type="checkbox" id="exampleCheck1"/>
                     <label class="custom-control-label" for="exampleCheck1">Запомнить меня</label>
                 </div>
-                <a href="#" id="refForgetPassword" class="ml-2">Забыли пароль?</a>
+                <a href="#" id="refForgetPassword" class="ml-2" onClick={this.props.func}>Забыли пароль?</a>
             </div>
         )
     }

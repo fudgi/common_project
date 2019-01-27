@@ -64,7 +64,8 @@ class RespondScreen extends React.Component {
                                 user_id={this.props.user_id} 
                                 request_id={this.props.request_id} 
                                 items={this.state.items[1]} 
-                                respondingChange={this.props.respondingChange}/>
+                                respondingChange={this.props.respondingChange}
+                                updateComponentHandle={this.updateComponentHandle}/>
                 }
                 break;
             case "2":

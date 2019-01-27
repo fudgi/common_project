@@ -11,6 +11,7 @@
         r.request_tillDate,
         r.request_price,
         r.request_location,
+        r.request_confirmed_respond,
         u.username,
         u.photo,
         u.telephone
@@ -19,6 +20,17 @@
         WHERE r.request_id = '{$gettedData->request_id}'";
     $data []= MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
     
-    $query = "SELECT * FROM `request_respond_data` WHERE `request_id`='{$gettedData->request_id}' AND `user_id`='{$gettedData->user_id}'";
-    $data []= MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
+    //проверка на уже установленный ответ
+    // if($data[0]['request_confirmed_respond'] == NULL){
+        $query = "SELECT * FROM `request_respond_data` WHERE `request_id`='{$gettedData->request_id}' AND `user_id`='{$gettedData->user_id}'";
+        $tempData []= MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
+        // if($tempData[0]['state']==0){
+        //     $data[]['state'] = 0;
+        // }
+        // else 
+        $data[]=$tempData[0];
+    // }
+    // else 
+    // $data[]['state'] = 0;
+
     echo json_encode($data);
