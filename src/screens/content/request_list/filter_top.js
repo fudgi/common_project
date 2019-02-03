@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from "react-router-dom"
+
 import search from '../../../img/search.svg'
 import plus from '../../../img/plus.svg'
 import sidebarOpen from '../../../img/arrowBack.svg'
@@ -6,11 +8,7 @@ import sidebarOpen from '../../../img/arrowBack.svg'
 class FilterTop extends React.Component {
     constructor(props){
         super(props);
-        this.RequestCreationCall = this.RequestCreationCall.bind(this);
         this.sideBarOpener = this.sideBarOpener.bind(this);
-    }
-    RequestCreationCall() {
-        this.props.respondingChange({screen_id:"4", responding: "false"});
     }
 
     sideBarOpener(e) {
@@ -34,10 +32,10 @@ class FilterTop extends React.Component {
                             </button>
                         </div>
 
-                        <button className="purp-button col-10 col-sm-4 btn" onClick={this.RequestCreationCall}>
+                        <Link className="purp-button col-10 col-sm-4 btn" to="/request_creation">
                             <img src={plus} className="mr-2"/>
                             Добавить запрос
-                        </button>
+                        </Link>
                     </div>
 
                     <p className="text-muted my-2">Сортировать по:</p>

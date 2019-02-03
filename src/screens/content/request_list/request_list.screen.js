@@ -61,7 +61,7 @@ class RequestList extends React.Component {
         let Sidebar, filter;
         if(this.props.screen_id == "0"){
             Sidebar = <Category categoryChange={this.categoryChange} selected_category={this.state.selected_category}/>
-            filter  = <Filter respondingChange={this.props.respondingChange}/>;
+            filter  = <Filter />;
         }
 
         const { error, isLoaded } = this.state;

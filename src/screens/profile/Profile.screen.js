@@ -3,6 +3,9 @@ import React from 'react'
 import Loading from '../common_components/loading'
 import Fetch from '../service/fetch'
 
+import Header from '../common_components/header'
+import NavBar from '../common_components/navbar'
+
 import star from '../../img/star.svg';
 import halfStar from '../../img/star_half.svg';
 import avatar from '../../img/avatar-man-1.svg'; 
@@ -14,7 +17,9 @@ class Profile extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            user_data: {}
+            user_data: {},
+            user_name: "Миша Смирнов",
+            user_location: "Казань"
         }
         this.LeaveProfile = this.LeaveProfile.bind(this);
     }
@@ -40,44 +45,48 @@ class Profile extends React.Component {
         }
         else {
             return (
-                <main className="mx-auto col-6  mt-3 rounded bg-white">
-                    <form className="mx-auto col-8 col-md-6 col-xl-6 p-4 needs-validation">
-                        <div className="avatar text-center">
-                                <img className="rounded-circle" src={this.state.user_data.photo} alt="Avatar" width="140" height="140"/>
-                                <img src={editPhoto} className="under-avatar"  width="50"/>
-                        </div>
+                <React.Fragment>
+                    <Header />
+                    <NavBar screen_id={this.state.screen_id} user_name={this.state.user_name} user_location={this.state.user_location} stateChanger={this.respondingChange}/>
+                    <main className="mx-auto col-6  mt-3 rounded bg-white">
+                        <form className="mx-auto col-8 col-md-6 col-xl-6 p-4 needs-validation">
+                            <div className="avatar text-center">
+                                    <img className="rounded-circle" src={this.state.user_data.photo} alt="Avatar" width="140" height="140"/>
+                                    <img src={editPhoto} className="under-avatar"  width="50"/>
+                            </div>
 
-                        <div className="rating-bar text-center mt-3">
-                            <span className="mr-2 align-middle">4,3</span>
-                            <img src={star} width="20" height="20"/>
-                            <img src={star} width="20" height="20"/>
-                            <img src={star}  width="20" height="20"/>
-                            <img src={star} width="20" height="20"/>
-                            <img src={halfStar} width="20" height="20"/>
-                        </div>
+                            <div className="rating-bar text-center mt-3">
+                                <span className="mr-2 align-middle">4,3</span>
+                                <img src={star} width="20" height="20"/>
+                                <img src={star} width="20" height="20"/>
+                                <img src={star}  width="20" height="20"/>
+                                <img src={star} width="20" height="20"/>
+                                <img src={halfStar} width="20" height="20"/>
+                            </div>
 
-                        <div className="text-center text-wrap mt-1">
-                                Заказов выполнено: <b>126</b>
-                        </div>
-                        
-                        <p className="text-muted m-0 mt-4">Имя</p>
-                        <p className="text-field px-0">{this.state.user_data.username}</p>
+                            <div className="text-center text-wrap mt-1">
+                                    Заказов выполнено: <b>126</b>
+                            </div>
+                            
+                            <p className="text-muted m-0 mt-4">Имя</p>
+                            <p className="text-field px-0">{this.state.user_data.username}</p>
 
-                        <p className="text-muted m-0 mt-4">Телефон</p>
-                        <p className="text-field px-0">{this.state.user_data.telephone}</p>
+                            <p className="text-muted m-0 mt-4">Телефон</p>
+                            <p className="text-field px-0">{this.state.user_data.telephone}</p>
 
-                        <p className="text-muted m-0 mt-4">Email</p>
-                        <p className="text-field px-0">{this.state.user_data.email}</p>
+                            <p className="text-muted m-0 mt-4">Email</p>
+                            <p className="text-field px-0">{this.state.user_data.email}</p>
 
-                        <p className="text-muted m-0 mt-4">Город</p>
-                        <p className="text-field px-0 m-0">{this.state.user_data.location}</p>
+                            <p className="text-muted m-0 mt-4">Город</p>
+                            <p className="text-field px-0 m-0">{this.state.user_data.location}</p>
 
-                        <div className="d-flex flex-column text-center my-4">
-                            <a className="">Изменить пароль</a>
-                            <a className="text-danger" onClick={this.LeaveProfile}>Покинуть профиль</a>
-                        </div>
-                    </form>
-                </main>
+                            <div className="d-flex flex-column text-center my-4">
+                                <a className="">Изменить пароль</a>
+                                <a className="text-danger" onClick={this.LeaveProfile}>Покинуть профиль</a>
+                            </div>
+                        </form>
+                    </main>
+                </React.Fragment>
             )
         }
     }

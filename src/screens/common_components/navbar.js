@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 import logo from '../../img/logo.svg';
 import marker from '../../img/marker.svg';
@@ -8,26 +9,18 @@ import logoSingle from '../../img/logoSingle.svg';
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
-        this.HandleNavBarClick = this.HandleNavBarClick.bind(this);
         this.ProfileScreenCall = this.ProfileScreenCall.bind(this);
         this.LeaveProfile = this.LeaveProfile.bind(this);
     }
     
-    
-    HandleNavBarClick(e) {
-        e.preventDefault();
-        let target = e.target;
-        if(target.classList.contains('nav-item')){
-            this.props.stateChanger({screen_id:target.dataset.id, responding: false})
-        }
-    }
     ProfileScreenCall(e) {
-        this.props.stateChanger({screen_id:"3", responding: false})
+        // this.props.stateChanger({screen_id:"3", responding: false})
+        // this.props.history.push('/all_requests');
     }
 
     LeaveProfile(e) {
         //выход из сессии на сервере
-        this.props.stateChanger({screen_id:"6", responding: false})
+        // this.props.stateChanger({screen_id:"6", responding: false})
     }
 
     render() {
@@ -55,11 +48,11 @@ class NavBar extends React.Component {
                     </button>
                 </div>
                 
-                <div className="collapse navbar-collapse col-4 offset-md-1" id="requestSupportedContent" onClick={this.HandleNavBarClick}>
+                <div className="collapse navbar-collapse col-4 offset-md-1" id="requestSupportedContent">
                     <div className="navbar-nav mx-auto">
-                        <a className={selected[0]} data-id="0" href="#">Все запросы</a>
-                        <a className={selected[1]} data-id="1" href="#">Мои запросы</a>
-                        <a className={selected[2]} data-id="2" href="#">Отклики</a>
+                        <Link to="/all_requests" className={selected[0]} data-id="0">Все запросы</Link>
+                        <Link to="/my_request" className={selected[1]} data-id="1">Мои запросы</Link>
+                        <Link to="/my_responds" className={selected[2]} data-id="2">Отклики</Link>
                     </div>
                 </div>
 
@@ -79,7 +72,7 @@ class NavBar extends React.Component {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a className="dropdown-item" href="#">Общие настройки</a>
                                 <a className="dropdown-item d-sm-inline d-lg-none" href="#">Выбор города</a>
-                                <a className="dropdown-item" href="#" onClick={this.ProfileScreenCall}>Настройки профиля</a>
+                                <Link to="/profile" className="dropdown-item">Настройки профиля</Link>
                                 <a className="dropdown-item" href="#" onClick={this.LeaveProfile}>Покинуть профиль</a>
                             </div>
                         </div>
@@ -89,7 +82,7 @@ class NavBar extends React.Component {
                         <img src={marker} className="rounded-circle" width="20" height="20"/>Выбор города
                     </a>
                     <a className="nav-item nav-link d-sm-none" href="#">Общие настройки</a>
-                    <a className="nav-item nav-link d-sm-none" href="#" onClick={this.ProfileScreenCall}>Настройки профиля</a>
+                    <Link to="/profile" className="nav-item nav-link d-sm-none">Настройки профиля</Link>
                     <a className="nav-item nav-link d-sm-none" href="#" onClick={this.LeaveProfile}>Покинуть профиль</a>
                 </div>
             </nav>

@@ -3,6 +3,7 @@ html {
     background-color: #F4F4F5;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.95rem;
+    overflow-y: overlay;
 }
 
 header {
@@ -25,6 +26,10 @@ main .container{
     font-size: 0.9em;
 }
 
+.rotate {
+    transform: rotate(-180deg);
+    transition: transform 150ms ease;
+}
 /* ----------------- */
 /* buttons */
 .btn:focus {

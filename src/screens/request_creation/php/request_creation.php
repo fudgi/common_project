@@ -9,7 +9,7 @@
   $query = "INSERT INTO `request_data` 
             (`creator_user_id`, `request_title`, `request_whenDate`, 
             `request_tillDate`, `request_price`, `request_description`, 
-            `request_location`, `request_state`, `request_confirmed_responder`, 
+            `request_location`, `request_state`, `request_confirmed_respond`, 
             `request_timestamp`, `category_id`)
              VALUES ('{$gettedData->user_id}', '{$gettedData->title}',
               '{$gettedData->whenDate}', '{$gettedData->tillDate}',
@@ -20,5 +20,4 @@
   if($answer) {        
     echo 1;
   }
-  else echo "Не";
-?>
+  else echo 0;

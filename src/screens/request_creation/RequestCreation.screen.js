@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from '../common_components/header'
+import NavBar from '../common_components/navbar'
 
 import CreationFirstScreen from './CreationFirst.part'
 import CreationSecondScreen from './CreationSecond.part'
@@ -13,7 +15,9 @@ class RequestCreationContainer extends React.Component {
         this.HandleCategoryTitle = this.HandleCategoryTitle.bind(this);
         this.HandleCategoryDate = this.HandleCategoryDate.bind(this);
         this.state = {
-            screen_position: 0
+            screen_position: 0,
+            user_name: "Миша Смирнов",
+            user_location: "Казань"
         };
 
         this.request= {
@@ -46,23 +50,31 @@ class RequestCreationContainer extends React.Component {
         this.request.whenDate = category_whenDate;
         this.request.tillDate = category_tillDate;
         this.request.location = category_location;
+        alert(JSON.stringify(this.request))
         Fetch.getData("react-app-07/src/screens/request_creation/php/request_creation.php", this.request)
-        .then((result) => {
-            this.props.stateChanger({screen_id: "1", responding: false})})       
+        .then(() => this.props.history.push('/all_requests'))
+        .catch(()=> alert("Ошибка создания запроса"))
+        
     }
 
     render() {
+        let content;
         switch(this.state.screen_position){
             case 0: 
-                return <CreationFirstScreen 
-                        onCategorySelect = {this.HandleCategorySelect}/>
+                content =   <CreationFirstScreen onCategorySelect = {this.HandleCategorySelect}/>
+                break;
             case 1:
-                return <CreationSecondScreen 
-                        onTitleSelect = {this.HandleCategoryTitle}/>
+                content =   <CreationSecondScreen onTitleSelect = {this.HandleCategoryTitle}/>
+                break;
             case 2:
-                return <CreationThirdScreen 
-                        onDateSelect = {this.HandleCategoryDate}/>
+                content =   <CreationThirdScreen onDateSelect = {this.HandleCategoryDate}/>
+                break;
         }
+        return  <React.Fragment>
+                    <Header />
+                    <NavBar user_name={this.state.user_name} user_location={this.state.user_location}/>
+                    {content}
+                </React.Fragment>
     }
 }
 

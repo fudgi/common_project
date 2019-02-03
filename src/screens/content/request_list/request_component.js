@@ -12,7 +12,7 @@ class RequestComponent extends React.Component {
         }
 
     requestButtonClick(e) {
-        this.props.respondingChange({responding:true}, e.target.dataset.id);
+        this.props.respondingChange({responding:true, request_id: e.target.dataset.id});
     }
 
     render() {
