@@ -7,29 +7,25 @@ import avatar from '../../img/avatar-man-1.svg';
 import logoSingle from '../../img/logoSingle.svg';
 
 class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.ProfileScreenCall = this.ProfileScreenCall.bind(this);
-        this.LeaveProfile = this.LeaveProfile.bind(this);
-    }
-    
-    ProfileScreenCall(e) {
-        // this.props.stateChanger({screen_id:"3", responding: false})
-        // this.props.history.push('/all_requests');
-    }
-
-    LeaveProfile(e) {
-        //выход из сессии на сервере
-        // this.props.stateChanger({screen_id:"6", responding: false})
-    }
-
     render() {
+        let number;
+        switch(window.location.pathname.split('/')[1]) {
+            case "all_requests":
+                number = 0;
+                break;
+            case "my_requests":
+                number = 1;
+                break;
+            case "my_responds":
+                number = 2;
+                break;
+        }
         let classHolder = "nav-item nav-link py-sm-3";
         let selected = [classHolder, classHolder, classHolder];
-        selected[this.props.screen_id] = classHolder + " selected-position";
+        selected[number] = classHolder + " selected-position";
         return(
             <nav className="navbar navbar-expand-sm bg-white shade p-0">
-                <a className="navbar-brand col-sm-3 mr-0 py-2 p-0 d-none d-sm-flex justify-content-sm-end justify-content-center"  href="#">
+                <a className="navbar-brand col-sm-3 mr-0 py-2 p-0 d-none d-sm-flex justify-content-sm-end justify-content-center"  href="/all_requests">
                     <img src={logo}/>
                 </a>
 
@@ -51,7 +47,7 @@ class NavBar extends React.Component {
                 <div className="collapse navbar-collapse col-4 offset-md-1" id="requestSupportedContent">
                     <div className="navbar-nav mx-auto">
                         <Link to="/all_requests" className={selected[0]} data-id="0">Все запросы</Link>
-                        <Link to="/my_request" className={selected[1]} data-id="1">Мои запросы</Link>
+                        <Link to="/my_requests" className={selected[1]} data-id="1">Мои запросы</Link>
                         <Link to="/my_responds" className={selected[2]} data-id="2">Отклики</Link>
                     </div>
                 </div>
@@ -59,14 +55,14 @@ class NavBar extends React.Component {
 
                 <div className="collapse navbar-collapse offset-sm-1" id="navbarSupportedContent">
                     <div className="hide d-none d-sm-flex align-items-center">
-                        <div className="location d-none d-lg-block mr-2">
-                            <img src={marker} className="rounded-circle" width="20" height="20"/>
+                        <div className="location d-none d-lg-block mr-3">
+                            <img src={marker} className="rounded-circle mr-1" width="20" height="20"/>
                             <span>{this.props.user_location}</span>
                         </div>
                 
                         <div className="nav-item dropdown">
                             <a className="dropdown-toggle p-0"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src={avatar} className="rounded-circle p-0" width="30" height="30"/>
+                                <img src={avatar} className="rounded-circle p-0 mr-1" width="30" height="30"/>
                                 <span className="user_name">{this.props.user_name}</span>
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">

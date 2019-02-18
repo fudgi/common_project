@@ -23,7 +23,7 @@ class Content extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(this.props.responding==false && this.state.responding && prevState.responding){
+        if(this.state.responding && prevState.responding){
             this.setState({responding:false})
         }
     }

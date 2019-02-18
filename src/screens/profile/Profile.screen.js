@@ -3,9 +3,6 @@ import React from 'react'
 import Loading from '../common_components/loading'
 import Fetch from '../service/fetch'
 
-import Header from '../common_components/header'
-import NavBar from '../common_components/navbar'
-
 import star from '../../img/star.svg';
 import halfStar from '../../img/star_half.svg';
 import avatar from '../../img/avatar-man-1.svg'; 
@@ -46,9 +43,7 @@ class Profile extends React.Component {
         else {
             return (
                 <React.Fragment>
-                    <Header />
-                    <NavBar screen_id={this.state.screen_id} user_name={this.state.user_name} user_location={this.state.user_location} stateChanger={this.respondingChange}/>
-                    <main className="mx-auto col-6  mt-3 rounded bg-white">
+                     <main className="mx-auto col-6  mt-3 rounded bg-white">
                         <form className="mx-auto col-8 col-md-6 col-xl-6 p-4 needs-validation">
                             <div className="avatar text-center">
                                     <img className="rounded-circle" src={this.state.user_data.photo} alt="Avatar" width="140" height="140"/>

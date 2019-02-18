@@ -8,7 +8,7 @@ class UserBrief extends React.Component {
         return (
             <div className="LB-side d-flex justify-content-center">
                 <img src={this.props.photo} className="rounded-circle" width="50" height="50"/>
-                <div className="ml-3">
+                <div className="ml-3 d-flex flex-column justify-content-center">
                     <span>{this.props.username}</span>
                     <div className="rating-bar text-center">
                         <span className="mr-2 align-middle">4,3</span>

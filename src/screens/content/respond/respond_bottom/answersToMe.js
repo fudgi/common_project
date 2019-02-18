@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import RespondComponent from './respond.component'
 
@@ -8,8 +9,8 @@ class Respond_Bottom extends React.Component {
         this.getBackOnRequestList = this.getBackOnRequestList.bind(this);
     }
     
-    getBackOnRequestList(e){
-        this.props.respondingChange({responding:false});
+    getBackOnRequestList(){
+        this.props.history.push("/my_requests")
     }
 
     render() {
@@ -50,4 +51,4 @@ class Respond_Bottom extends React.Component {
     }
 }
 
-export default Respond_Bottom
+export default withRouter(Respond_Bottom)

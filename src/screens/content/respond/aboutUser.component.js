@@ -5,9 +5,6 @@ import phone from '../../../img/phone-call.svg'
 import marker from '../../../img/marker.svg'
 
 class AboutUser extends React.Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         return (
             <div className="d-flex flex-column flex-md-row justify-content-md-between my-4">

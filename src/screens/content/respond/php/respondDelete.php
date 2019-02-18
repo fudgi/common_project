@@ -6,6 +6,10 @@
   //---------------------
   MySQL_Transaction::connectionSetup();
   $gettedData = json_decode(file_get_contents('php://input'));
+
+  $queryPhotos = "DELETE FROM `photo_list` WHERE `respond_id` = '{$gettedData->respond_id}'";
+  MySQL_Transaction::querySender($queryPhotos);
+
   $query = "DELETE FROM `request_respond_data` WHERE `user_id`='{$gettedData->user_id}' AND `request_id` = '{$gettedData->request_id}';";
   $answer = MySQL_Transaction::querySender($query);
   if($answer) {        

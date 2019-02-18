@@ -23,11 +23,11 @@ class FilterTop extends React.Component {
                 <a href="#" class="btn d-md-none" id="menu-toggle" onClick={this.sideBarOpener}>
                     <img src={sidebarOpen} width="10" className="d-md-none" id="menu-toggle"/>
                 </a>
-                <div className="sort-top">
+                <section className="sort-top">
                     <div className="d-flex flex-column flex-sm-row  align-items-center justify-content-sm-between">
-                        <div className="col-10 col-sm-4 d-flex justify-content-center justify-content-sm-start">
-                            <input type="text" className="searchbar  col-10 mb-2 mb-sm-0" placeholder="Поиск"/>
-                            <button type="button" className="btn searchbar  mb-2 mb-sm-0">
+                        <div className="searchbar col-10 col-sm-4 d-flex pl-0 mb-2 mb-sm-0">
+                            <input type="text" className="col-10 p-0 m-0" placeholder="Поиск"/>
+                            <button type="button" className="btn">
                                 <img src={search}/>
                             </button>
                         </div>
@@ -56,7 +56,7 @@ class FilterTop extends React.Component {
                     <div className="row">
                         <span className="display-sort-date mx-auto">15 апреля</span>
                     </div>
-                </div>
+                </section>
             </React.Fragment>
         )
     }

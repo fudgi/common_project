@@ -17,6 +17,7 @@ class RequestList extends React.Component {
             isLoaded: false,
             items: []
         };
+        this.URLpath = this.props.location.pathname;
         this.categoryChange = this.categoryChange.bind(this);
         this.HandleNetworkUpdate = this.HandleNetworkUpdate.bind(this);
     }
@@ -41,14 +42,14 @@ class RequestList extends React.Component {
     //для связи с БД и обновления списка
     HandleNetworkUpdate(){
         let path;
-        switch (this.props.screen_id){
-            case "0":
+        switch (this.URLpath){
+            case "/all_requests":
                 path='react-app-07/src/screens/content/request_list/php/requests.php';
                 break;
-            case "1":
+            case "/my_requests":
                 path='react-app-07/src/screens/content/request_list/php/myRequests.php';
                 break;
-            case "2":
+            case "/my_responds":
                 path='react-app-07/src/screens/content/request_list/php/myResponds.php';
                 break;
         }
@@ -59,12 +60,13 @@ class RequestList extends React.Component {
     
     render() {
         let Sidebar, filter;
-        if(this.props.screen_id == "0"){
-            Sidebar = <Category categoryChange={this.categoryChange} selected_category={this.state.selected_category}/>
+        const { error, isLoaded } = this.state;
+
+        if(this.URLpath == "/all_requests"){
+            Sidebar = <Category user_id={this.props.user_id} categoryChange={this.categoryChange} selected_category={this.state.selected_category}/>
             filter  = <Filter />;
         }
 
-        const { error, isLoaded } = this.state;
         if (error) {
             return <div className="d-flex justify-content-center mt-3">Отсутствуют данные для отображения</div>;
         } 
@@ -80,7 +82,7 @@ class RequestList extends React.Component {
                             {filter}
                             <div className="request-list">
                                 {this.state.items.map(item => {
-                                    return <RequestComponent key={item.request_id} type={this.props.screen_id}  data={item} respondingChange={this.props.respondingChange}/>
+                                    return <RequestComponent key={item.request_id} type={this.URLpath}  data={item}/>
                                 })}
                             </div>
                         </div>  

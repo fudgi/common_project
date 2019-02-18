@@ -20,17 +20,20 @@
         WHERE r.request_id = '{$gettedData->request_id}'";
     $data []= MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
     
-    //проверка на уже установленный ответ
-    // if($data[0]['request_confirmed_respond'] == NULL){
-        $query = "SELECT * FROM `request_respond_data` WHERE `request_id`='{$gettedData->request_id}' AND `user_id`='{$gettedData->user_id}'";
-        $tempData []= MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
-        // if($tempData[0]['state']==0){
-        //     $data[]['state'] = 0;
-        // }
-        // else 
-        $data[]=$tempData[0];
-    // }
-    // else 
-    // $data[]['state'] = 0;
+    //содержание отклика
+    $query = "SELECT * FROM `request_respond_data` WHERE `request_id`='{$gettedData->request_id}' AND `user_id`='{$gettedData->user_id}'";
+    $tempdata[] = MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
 
+    //загрузка фото из отклика
+    $queryPhoto = "SELECT `imageURL` FROM `photo_list` WHERE `respond_id`={$tempdata[0]['id']}";
+    $queryResultData = MySQL_Transaction::querySender($queryPhoto);
+    if ($queryResultData->num_rows > 0) {
+        while($row = mysqli_fetch_assoc($queryResultData)) {
+            $array[] = $row;
+        }
+        $tempdata[] = $array;
+        // return $array;
+    }
+
+    $data[] = $tempdata;
     echo json_encode($data);

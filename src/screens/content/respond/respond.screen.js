@@ -16,24 +16,26 @@ class RespondScreen extends React.Component {
             isLoaded: false,
             items: []
         };
+        this.request_id = this.props.match.params.id;
+        this.URLpath = window.location.pathname.split('/')[1];
         this.updateComponentHandle = this.updateComponentHandle.bind(this);
     }
 
     updateComponentHandle(){
         this.setState({isLoaded: false,items: [], error: null})
         let path;
-        switch(this.props.screen_id){
-            case "0":
-                path = 'react-app-07/src/screens/content/respond/php/myAnswerLoad.php';
+        switch(this.URLpath){
+            case "all_requests":
+                path = 'http://localhost:3000/react-app-07/src/screens/content/respond/php/myAnswerLoad.php';
                 break;
-            case "1":
-                path = 'react-app-07/src/screens/content/respond/php/answerToMeLoad.php';
+            case "my_requests":
+                path = 'http://localhost:3000/react-app-07/src/screens/content/respond/php/answerToMeLoad.php';
                 break;
-            case "2":
-                path = 'react-app-07/src/screens/content/respond/php/respondChangeLoad.php'
+            case "my_responds":
+                path = 'http://localhost:3000/react-app-07/src/screens/content/respond/php/respondChangeLoad.php'
                 break;
         }
-        Fetch.getData(path, {request_id: this.props.request_id, user_id: this.props.user_id})
+        Fetch.getData(path, {request_id: this.request_id, user_id: this.props.user_id})
             .then((result) => this.setState({isLoaded: true,items: result, error: null}),
                   (error) => this.setState({isLoaded: true, error}))
     }
@@ -51,30 +53,30 @@ class RespondScreen extends React.Component {
     render(){
         const {error, isLoaded} = this.state;
         let bottomPart;
-        switch(this.props.screen_id){
-            case "0":
+        switch(this.URLpath){
+            case "all_requests":
                 bottomPart = <MyAnswerBottom 
                                 user_id={this.props.user_id} 
-                                request_id={this.props.request_id} 
-                                respondingChange={this.props.respondingChange}/>
+                                request_id={this.request_id}
+                             />
                 break;
-            case "1":
+            case "my_requests":
                 if(this.state.items.length >=2){
                     bottomPart = <AnswersToMeBottom 
                                 user_id={this.props.user_id} 
-                                request_id={this.props.request_id} 
+                                request_id={this.request_id} 
                                 items={this.state.items[1]} 
                                 respondingChange={this.props.respondingChange}
                                 updateComponentHandle={this.updateComponentHandle}/>
                 }
                 break;
-            case "2":
+            case "my_responds": 
                 if(this.state.items.length ==2){
                     bottomPart = <MyRespondChanger  
-                                user_id={this.props.user_id} 
-                                request_id={this.props.request_id} 
-                                items={this.state.items[1]} 
-                                respondingChange={this.props.respondingChange} />
+                                    user_id={this.props.user_id} 
+                                    request_id={this.request_id} 
+                                    items={this.state.items[1]} 
+                                 />
                 }
                 break;
         }
@@ -88,7 +90,7 @@ class RespondScreen extends React.Component {
         else {
             return( 
                 <React.Fragment>
-                    <RespondTop screen_id={this.props.screen_id} data={this.state.items[0]}/>
+                    <RespondTop URLpath={this.URLpath} data={this.state.items[0]}/>
                     {bottomPart}
                 </React.Fragment>
             )

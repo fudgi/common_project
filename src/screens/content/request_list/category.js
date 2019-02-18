@@ -28,7 +28,7 @@ class SortCategory extends React.Component {
     }
 
     componentDidMount() {
-        Fetch.getData('react-app-07/src/screens/content/request_list/php/category.php',{selected_category: this.props.selected_category})
+        Fetch.getData('react-app-07/src/screens/content/request_list/php/category.php',{user_id: this.props.user_id})
             .then((result) => this.setState({items: result}))
             .catch((error) => alert(error));
     }

@@ -1,32 +1,52 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
-import Fetch from '../../../service/fetch'
+import ImgDrop from '../../../common_components/imgDrop'
 import ruble from '../../../../img/ruble_sign.svg'
-import crop from '../../../../img/crop_original.svg'
+
 
 class Respond_Bottom extends React.Component {
     constructor(props) {
         super(props);
-        this.getBackOnRequestList = this.getBackOnRequestList.bind(this);
+        this.state = {
+            files: []
+        }
         this.saveAnswer = this.saveAnswer.bind(this);
-    }
-    
-    getBackOnRequestList(e){
-        e.preventDefault();
-        this.props.respondingChange({responding:false});
+        this.imageFilesGetCallback = this.imageFilesGetCallback.bind(this);
     }
     
     saveAnswer() {
         let price = document.getElementById('answer_price');
         let description = document.getElementById('answer_description');
-        let data = {responder_id:this.props.user_id, request_id:this.props.request_id, price: price.value, description:description.value};
-        
-        Fetch.getData("react-app-07/src/screens/content/respond/php/myAnswerSave.php", data)
-            .then((result)=>{
-                this.props.respondingChange({screen_id:'2'}); //возвращает request_id записи
-            })
-            // .catch((error)=>alert("Ошибка записи отклика на запрос"));
-        
+        if(price.value=="" || description.value==""){
+            alert("Заполните все поля");
+            return;
+        }
+        let formData = new FormData();
+        formData.append("responder_id", this.props.user_id);
+        formData.append("request_id", this.props.request_id);
+        formData.append("price", price.value);
+        formData.append("description", description.value);
+        this.state.files.forEach(function(file, i) {
+            formData.append('image_' + i, file);
+        });
+
+        let dataToSend ={
+            method: "POST",
+            body:formData
+        };
+
+        fetch("http://localhost:3000/react-app-07/src/screens/content/respond/php/myAnswerSave.php", dataToSend)
+            .then(res => res.json())
+            .then((res) => this.props.history.push("/my_responds/" + this.props.request_id))
+            .catch(() => alert("Неудачная попытка создания отклика"))
+    }
+
+    imageFilesGetCallback(acceptedFiles){
+        this.setState({
+            files: this.state.files.concat(
+                acceptedFiles.map(file => Object.assign(file, {preview: URL.createObjectURL(file)})))
+          });
     }
 
     render() {
@@ -44,20 +64,22 @@ class Respond_Bottom extends React.Component {
                         <textarea name="description" id="answer_description" className="textarea mb-4 rounded p-3" rows="5" placeholder="Платье шуруповерт супер"></textarea>
 
                         <span className="mb-2">Фото:</span>
-                        <div className="drag d-flex flex-column align-items-center justify-content-center rounded">
-                            <p className="text-muted mb-3">Добавить фотографии</p>
-                            <img src={crop}/>
-                        </div>
+                        <ImgDrop files={this.state.files} imageFilesGetCallback={this.imageFilesGetCallback}/>
                     </form>
                 </main>
 
                 <div className="d-flex justify-content-end offset-7 col-3 py-4 pr-0">
-                    <a href="#" className="my-auto mr-4 refs" onClick={this.getBackOnRequestList}>Отменить</a>
+                    <a href="/all_requests" className="my-auto mr-4 refs">Отменить</a>
                     <button className="purp-button btn p-2 px-5" onClick={this.saveAnswer}>Откликнуться</button>
                 </div>
             </React.Fragment>
         )
     }
+
+    componentWillUnmount() {
+        //to avoid memory leaks
+        this.state.files.forEach(file => URL.revokeObjectURL(file.preview))
+    }
 }
 
-export default Respond_Bottom
+export default withRouter(Respond_Bottom)

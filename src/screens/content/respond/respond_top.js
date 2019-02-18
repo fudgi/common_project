@@ -2,9 +2,12 @@ import React from 'react'
 
 import AboutUser from './aboutUser.component'
 import Map from '../../common_components/Map'
+import Time from '../../service/time'
+
 import properties from '../../../img/properties.svg'
 import downArrow from '../../../img/arrowDown.svg'
 import marker from '../../../img/marker.svg'
+
 
 class RequestAnswer extends React.Component {
     constructor(props) {
@@ -31,7 +34,7 @@ class RequestAnswer extends React.Component {
         let user_data;
         let show = 'collapse';
         //На втором экране усеченный верх
-        if (this.props.screen_id == "1"){
+        if (this.props.URLpath == "my_requests"){
             hideMap =   <a href="#" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="map" className='container-fluid purp-back text-center' onClick={this.dropDownNameChange}>
                             <span id="dropDownText">Показать больше</span>
                             <img className="ml-2" src={downArrow}/>
@@ -59,7 +62,7 @@ class RequestAnswer extends React.Component {
                     <p className="text-muted m-0 mt-4">Описание:</p>
                     <p>{this.props.data.request_description}</p>
                     <p className="text-muted m-0 mt-4">Даты:</p>
-                    <p className="font-weight-bold">{this.props.data.request_whenDate} - {this.props.data.request_tillDate}</p>
+                    <p className="font-weight-bold">{Time.format(this.props.data.request_whenDate)} - {Time.format(this.props.data.request_tillDate)}</p>
                     <p className="text-muted m-0 mt-4">Рекомендованная цена:</p>
                     <p className="font-weight-bold">{this.props.data.request_price}Р</p>
                     {user_data}
