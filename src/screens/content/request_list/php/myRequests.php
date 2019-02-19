@@ -4,10 +4,21 @@
 
     MySQL_Transaction::connectionSetup();
     $gettedData = json_decode(file_get_contents('php://input'));
-    
-    $query = "SELECT `request_id`,`request_title`,`request_location`,
-                     `request_whenDate`,`request_tillDate`,`request_price`
-                     FROM `request_data`
-                     WHERE creator_user_id='{$gettedData->user_id}';";
+    $query = "SELECT 
+                    r.request_id, 
+                    r.request_title, 
+                    r.request_location, 
+                    r.request_whenDate,
+                    r.request_tillDate,
+                    r.request_price,
+                    COUNT(rr.id) AS answer_count,
+                    rrr.state
+                    FROM request_data r
+                    LEFT JOIN request_respond_data rr 
+                    ON r.request_id=rr.request_id AND (rr.state <> 0 OR rr.state IS NULL)
+                    LEFT JOIN request_respond_data rrr
+                    ON r.request_id=rrr.request_id AND rrr.state = 1
+                    WHERE r.creator_user_id= '{$gettedData->user_id}'
+                    GROUP BY 1";
     $data = MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query));
     echo json_encode($data);

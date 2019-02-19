@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Redirect} from "react-router-dom"
 
 // import Login from './login/Login.screen'
-import Content from './content/content.screen'
 import RequestCreation from './request_creation/RequestCreation.screen'
 import Profile from './profile/Profile.screen'
 
@@ -19,10 +18,6 @@ class App extends React.Component {
             user_name: "Миша Смирнов",
             user_location: "Казань"
         };
-        this.respondingChange = this.respondingChange.bind(this);
-    }
-    respondingChange(data) {
-        this.setState(data);
     }
     //-----------------------------
     //Screen_id list:
@@ -38,7 +33,7 @@ class App extends React.Component {
                 <React.Fragment>
                 <Header />
                 <Navbar user_name={this.state.user_name} user_location={this.state.user_location}/>
-                    {/* <Route path="/" render={() => (<Redirect to="/all_requests"/>)}/> */}
+                    <Route exact path="/" render={() => (<Redirect to="/all_requests"/>)}/>
                     <Route
                         exact path="/all_requests"
                         render= {props => <RequestList {...props} user_id={this.state.user_id} />}
@@ -55,20 +50,17 @@ class App extends React.Component {
                     <Route
                         exact path="/all_requests/:id"
                         render= {props => <Responds {...props} 
-                            user_id={this.state.user_id} 
-                            respondingChange={this.respondingChange}/>}
+                            user_id={this.state.user_id} />}
                     />
                     <Route
                         exact path="/my_requests/:id"
                         render= {props => <Responds {...props} 
-                            user_id={this.state.user_id} 
-                            respondingChange={this.respondingChange}/>}
+                            user_id={this.state.user_id} />}
                     />
                     <Route
                         exact path="/my_responds/:id"
                         render= {props => <Responds {...props} 
-                            user_id={this.state.user_id} 
-                            respondingChange={this.respondingChange}/>}
+                            user_id={this.state.user_id} />}
                     />
 
                     <Route

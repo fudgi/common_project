@@ -8,13 +8,13 @@ function Header() {
         <header className="text-white">
             <div className="d-flex offset-sm-9 justify-content-end justify-content-sm-start align-items-center">
                 <span className="mr-2 small">Подпишись!</span>
-                <a href=" " className="mr-2">
+                <a href="https://twitter.com" className="mr-2">
                     <img src={twitter}/>
                 </a>
-                <a href=" " className="mr-2">
+                <a href="https://www.youtube.com" className="mr-2">
                     <img src={youtube}/>
                 </a>
-                <a href=" " className="mr-2">
+                <a href="https://ru-ru.facebook.com" className="mr-2">
                     <img src={facebook}/>
                 </a>
             </div>

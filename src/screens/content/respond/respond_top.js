@@ -35,7 +35,7 @@ class RequestAnswer extends React.Component {
         let show = 'collapse';
         //На втором экране усеченный верх
         if (this.props.URLpath == "my_requests"){
-            hideMap =   <a href="#" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="map" className='container-fluid purp-back text-center' onClick={this.dropDownNameChange}>
+            hideMap =   <a href="#" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="map" className='container-fluid purp-back text-center py-2' onClick={this.dropDownNameChange}>
                             <span id="dropDownText">Показать больше</span>
                             <img className="ml-2" src={downArrow}/>
                         </a>
