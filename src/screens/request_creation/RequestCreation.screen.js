@@ -3,7 +3,7 @@ import React from 'react'
 import CreationFirstScreen from './CreationFirst.part'
 import CreationSecondScreen from './CreationSecond.part'
 import CreationThirdScreen from './CreationThird.part'
-
+import { withRouter } from 'react-router-dom'
 import Fetch from '../service/fetch'
  
 class RequestCreationContainer extends React.Component {
@@ -73,4 +73,4 @@ class RequestCreationContainer extends React.Component {
     }
 }
 
-export default RequestCreationContainer
+export default withRouter(RequestCreationContainer)

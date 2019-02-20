@@ -2,6 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 import CommentBlock from '../../../common_components/commentBlock'
+import Gallery from '../../../common_components/gallery'
 import Fetch from '../../../service/fetch'
 import ruble from '../../../../img/ruble_sign.svg'
 
@@ -27,23 +28,15 @@ class Respond_Bottom extends React.Component {
     }
 
     render() {
-        let content;
-        const thumbs = this.props.items[1] == undefined?
-        undefined
-        :
-        <React.Fragment>
-            <span className="mb-2 text-muted">Фото:</span>
-            <aside className="thumbsContainer mt-2">
-                {this.props.items[1].map(file => (
-                    <div className="thumb mr-2 mb-2">
-                        <div className="thumbInner">
-                            <img src={file.imageURL} className="img"/>
-                        </div>
-                    </div>
-                ))}
-            </aside>
-        </React.Fragment>
-
+        let content, thumbs;
+        if(this.props.items[1] != undefined){
+            let arrayOfImageURL = this.props.items[1].map(item => item.imageURL);
+            thumbs = 
+                <React.Fragment>
+                    <span className="mb-2 text-muted">Фото:</span>
+                    <Gallery images={arrayOfImageURL} />
+                </React.Fragment>
+        }
         if(this.props.items[0].state == 0){
             content =   
                 <section className="d-flex flex-column mx-auto align-items-center mt-4 col-8">

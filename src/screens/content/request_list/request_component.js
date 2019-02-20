@@ -14,29 +14,34 @@ class RequestComponent extends React.Component {
     constructor(props){
         super(props);
         this.requestButtonClick = this.requestButtonClick.bind(this);
-        }
+        this.respondButtonClick = this.respondButtonClick.bind(this);
+    }
 
     requestButtonClick(e) {
         let newURL = window.location.pathname + "/" + e.target.dataset.id;
         this.props.history.push(newURL);
     }
 
+    respondButtonClick(e){
+        let newURL = "/my_responds/" + e.target.dataset.id;
+        this.props.history.push(newURL);
+    }
+
     render() {
         let requestBottom;
+        let button = {color: "btn decline-button", text: "Посмотреть", funcOnClick: this.respondButtonClick}
         switch (this.props.type) {
 
             case "/all_requests":
+                if(this.props.data.has_respond != 1){
+                    button = {color: "btn purp-button", text: "Откликнуться", funcOnClick: this.requestButtonClick};
+                }
             case "/my_responds":
-
-                let button;
-                if(this.props.type == "/my_responds") button = {color: "btn decline-button", text: "Посмотреть"};
-                else button = {color: "btn purp-button", text: "Откликнуться"};
-
                 requestBottom = 
                     <section className="d-flex flex-column flex-sm-row justify-content-sm-between mt-4">
                         <UserBrief username={this.props.data.username} photo={this.props.data.photo}/>
                         <div className="RB d-flex align-items-center justify-content-center justify-content-sm-end mt-3 mt-sm-0">
-                            <button className={button.color} onClick={this.requestButtonClick} data-id={this.props.data.request_id}>
+                            <button className={button.color} onClick={button.funcOnClick} data-id={this.props.data.request_id}>
                                 {button.text}
                             </button>
                         </div>
