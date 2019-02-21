@@ -26,13 +26,13 @@ class RespondScreen extends React.Component {
         let path;
         switch(this.URLpath){
             case "all_requests":
-                path = 'http://localhost:3000/react-app-07/src/screens/content/respond/php/myAnswerLoad.php';
+                path = 'react-app-07/src/screens/content/respond/php/myAnswerLoad.php';
                 break;
             case "my_requests":
-                path = 'http://localhost:3000/react-app-07/src/screens/content/respond/php/answerToMeLoad.php';
+                path = 'react-app-07/src/screens/content/respond/php/answerToMeLoad.php';
                 break;
             case "my_responds":
-                path = 'http://localhost:3000/react-app-07/src/screens/content/respond/php/respondChangeLoad.php'
+                path = 'react-app-07/src/screens/content/respond/php/respondChangeLoad.php'
                 break;
         }
         Fetch.getData(path, {request_id: this.request_id, user_id: this.props.user_id})

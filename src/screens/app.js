@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Redirect} from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom"
 
 // import Login from './login/Login.screen'
 import RequestCreation from './request_creation/RequestCreation.screen'
@@ -32,7 +32,7 @@ class App extends React.Component {
                 <React.Fragment>
                 <Header />
                 <Navbar user_name={this.state.user_name} user_location={this.state.user_location}/>
-                    <Route exact path="/" render={() => (<Redirect to="/all_requests"/>)}/>
+                    <Switch>
                     <Route
                         exact path="/all_requests"
                         render= {props => <RequestList {...props} user_id={this.state.user_id} />}
@@ -77,6 +77,9 @@ class App extends React.Component {
                                 user_id={this.state.user_id}
                         />}
                     />
+                    <Redirect from="/*" to="/all_requests" />
+                    {/* <Route exact path="/" render={() => (<Redirect to="/all_requests"/>)}/> */}
+                    </Switch>
                 </React.Fragment>
             </Router>
         )
