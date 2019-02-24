@@ -1,6 +1,6 @@
 import React from 'react'
 import Dropzone from 'react-dropzone';
-import crop from './../../img/crop_original.svg'
+import {icons} from '../../icon_paths'
 
 const imageMaxSize = 10000000; //bytes
 const baseStyle = {
@@ -62,7 +62,7 @@ class ImgDrop extends React.Component {
                                 {thumbs}
                             </aside>
                             :
-                            <img src={crop} className="py-2"/>
+                            <img src={icons.crop_original} className="py-2"/>
 
                         let styles = isDragActive ? activeStyle : baseStyle;
                             

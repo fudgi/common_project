@@ -1,7 +1,5 @@
 import React from 'react'
-import twitter from '../../img/Vector.svg'
-import youtube from '../../img/YouTube.svg';
-import facebook from '../../img/Vector-2.svg';
+import {icons} from '../../icon_paths'
 
 function Header() {
     return (
@@ -9,13 +7,13 @@ function Header() {
             <div className="d-flex offset-sm-9 justify-content-end justify-content-sm-start align-items-center">
                 <span className="mr-2 small">Подпишись!</span>
                 <a href="https://twitter.com" className="mr-2">
-                    <img src={twitter}/>
+                    <img src={icons.twitter_logo}/>
                 </a>
                 <a href="https://www.youtube.com" className="mr-2">
-                    <img src={youtube}/>
+                    <img src={icons.youtube_logo}/>
                 </a>
                 <a href="https://ru-ru.facebook.com" className="mr-2">
-                    <img src={facebook}/>
+                    <img src={icons.facebook_logo2}/>
                 </a>
             </div>
         </header>

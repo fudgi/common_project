@@ -4,10 +4,11 @@ import $ from'jquery'
 import 'bootstrap-datepicker'
 import './custom-datepicker.css'
 import './request_creation.css'
-import category from './img/Category.svg'
-import parameters from './img/Parameters1.svg'
-import dueDate from './img/DueDate1.svg'
-import calendar from './img/calendar.svg'
+// import category from './img/Category.svg'
+// import parameters from './img/Parameters1.svg'
+// import dueDate from './img/DueDate1.svg'
+// import calendar from './img/calendar.svg'
+import {category_icons} from '../../icon_paths'
 
 class RequestCreation extends React.Component{
     constructor(props) {
@@ -60,9 +61,6 @@ class RequestCreation extends React.Component{
             whenDate = whenDate.getFullYear() + "-" + (whenDate.getMonth()+1) + "-" + whenDate.getDate() + " 00:00:00";
             
             this.props.onDateSelect(whenDate, tillDate, location.value);
-            
-            // tillDate = tillDate.getDate() + "-" + (tillDate.getMonth()+1) + "-" + tillDate.getFullYear();
-            // whenDate = whenDate.getDate() + "-" + (whenDate.getMonth()+1) + "-" + whenDate.getFullYear();
         }
 
         else alert("Заполните все поля");
@@ -108,7 +106,7 @@ class RequestCreation extends React.Component{
 
                 <div className="d-flex justify-content-around mx-auto col-10 col-md-8 pt-5">
                     <a href="#">
-                        <img src={category} width="50"/>
+                        <img src={category_icons.Category} width="50"/>
                     </a>
 
                     <div className="container d-flex purp-gap flex-column justify-content-center m-0 p-0">
@@ -117,7 +115,7 @@ class RequestCreation extends React.Component{
                     </div>
 
                     <a href="#">
-                        <img src={parameters} width="50"/>
+                        <img src={category_icons.Parameters1} width="50"/>
                     </a>
 
                     <div className="container d-flex purp-gap flex-column justify-content-center m-0 p-0">
@@ -126,7 +124,7 @@ class RequestCreation extends React.Component{
                     </div>
 
                     <a href="#">
-                        <img src={dueDate} width="50"/>
+                        <img src={category_icons.DueDate1} width="50"/>
                     </a>
                 </div>
                 <div className="category-names row col-12 mx-auto flex-nowrap mt-2">
@@ -144,7 +142,7 @@ class RequestCreation extends React.Component{
                         <button className="btn hollow col-3 ml-3" data-id="2" id="whenDateSelectBtn">Указать дату</button>
                         <div className="date input-hollow col-3 ml-3 d-flex justify-content-center px-2 invisible" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 <input type="text" className="col-9 text-center"/>
-                                <img src={calendar}/>
+                                <img src={category_icons.calendar}/>
                                 <span className="input-group-addon"></span>
                         </div>
                     </div>
@@ -156,7 +154,7 @@ class RequestCreation extends React.Component{
                         <button className="btn hollow col-3 ml-3" data-id="2" id="tillDateSelectBtn">Указать дату</button>
                         <div className="date input-hollow col-3 ml-3 d-flex justify-content-center px-2 invisible" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                 <input type="text" className="col-9 text-center"/>
-                                <img src={calendar}/>
+                                <img src={category_icons.calendar}/>
                                 <span className="input-group-addon"></span>
                         </div>
                     </div>

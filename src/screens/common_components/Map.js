@@ -1,6 +1,6 @@
 import React from 'react'
 import { YMaps, Map, Placemark, GeolocationControl } from 'react-yandex-maps';
-import pin from '../../img/pin.svg'
+import {icons} from '../../icon_paths'
 
 const App = (props) => (
     <YMaps>
@@ -20,7 +20,7 @@ const App = (props) => (
                 geometry={props.placemark}
                 options={{
                     iconLayout: 'default#image',
-                    iconImageHref: pin,
+                    iconImageHref: icons.pin,
                 }}
             />
         </Map>

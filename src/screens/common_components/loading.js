@@ -1,10 +1,10 @@
 import React from 'react'
-import logo from '../../img/logoSingle.svg'
+import {icons} from '../../icon_paths'
 
 const Loading = () => (
     <div className="d-flex flex-column">
         <p className="mx-auto my-2">Загрузка</p>
-        <img src={logo}/>
+        <img src={icons.logoSingle}/>
     </div>
 )
 

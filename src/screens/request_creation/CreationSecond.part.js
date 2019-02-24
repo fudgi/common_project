@@ -1,11 +1,7 @@
 import React from 'react'
 
 import './request_creation.css'
-import category from './img/Category.svg'
-import parameters from './img/Parameters1.svg'
-import dueDate from './img/DueDate0.svg'
-import excalamation from './img/excalamation_mark.svg'
-import ruble from '../../img/ruble_sign.svg'
+import {icons, category_icons} from '../../icon_paths'
 
 class RequestCreation extends React.Component{
     constructor(props) {
@@ -30,7 +26,7 @@ class RequestCreation extends React.Component{
 
                 <div className="d-flex justify-content-around mx-auto col-10 col-md-8 pt-5">
                     <a href="#">
-                        <img src={category} width="50"/>
+                        <img src={category_icons.Category} width="50"/>
                     </a>
         
                     <div className="container d-flex purp-gap flex-column justify-content-center m-0 p-0">
@@ -39,7 +35,7 @@ class RequestCreation extends React.Component{
                     </div>
         
                     <a href="#">
-                        <img src={parameters} width="50"/>
+                        <img src={category_icons.Parameters1} width="50"/>
                     </a>
         
                     <div className="container d-flex gap flex-column justify-content-center m-0 p-0">
@@ -48,7 +44,7 @@ class RequestCreation extends React.Component{
                     </div>
         
                     <a href="#">
-                        <img src={dueDate} width="50"/>
+                        <img src={category_icons.DueDate0} width="50"/>
                     </a>
                 </div>
                 <div className="category-names row col-12 mx-auto flex-nowrap mt-2">
@@ -67,7 +63,7 @@ class RequestCreation extends React.Component{
 
                     <div>
                         <input type="number" className="searchbar" placeholder="1000" id="request-price"/>
-                        <img src={ruble}/>
+                        <img src={icons.ruble}/>
                     </div>
 
                     <label for="request-description" className="mb-2 mt-5">Описание:</label>
@@ -75,7 +71,7 @@ class RequestCreation extends React.Component{
 
 
                 <div className="mt-2 d-flex align-items-center">
-                    <img src={excalamation} width="20"/>
+                    <img src={category_icons.excalamation_mark} width="20"/>
                     <span className="small ml-2">Не пишите в названии и описании контактную информацию - для этого есть отдельные поля на вкладке "Контакты и сроки"</span>
                 </div>
                 </div>

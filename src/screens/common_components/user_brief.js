@@ -1,7 +1,5 @@
 import React from 'react';
-
-import star from '../../img/star.svg';
-import halfStar from '../../img/star_half.svg';
+import {icons} from '../../icon_paths';
 
 class UserBrief extends React.Component {
     render(){
@@ -12,11 +10,11 @@ class UserBrief extends React.Component {
                     <span>{this.props.username}</span>
                     <div className="rating-bar text-center">
                         <span className="mr-2 align-middle">4,3</span>
-                        <img src={star}  width="15"/>
-                        <img src={star}  width="15"/>
-                        <img src={star}  width="15"/>
-                        <img src={star}  width="15"/>
-                        <img src={halfStar}  width="15"/>
+                        <img src={icons.star}  width="15"/>
+                        <img src={icons.star}  width="15"/>
+                        <img src={icons.star}  width="15"/>
+                        <img src={icons.star}  width="15"/>
+                        <img src={icons.star_half}  width="15"/>
                         <span className="text-muted">(126)</span>
                     </div>
                 </div>

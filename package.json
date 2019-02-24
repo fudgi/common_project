@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "/",
   "proxy": "http://localhost:80",
   "dependencies": {
     "bootstrap": "^4.2.1",

@@ -1,10 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-
-import logo from '../../img/logo.svg';
-import marker from '../../img/marker.svg';
-import avatar from '../../img/avatar-man-1.svg';
-import logoSingle from '../../img/logoSingle.svg';
+import {icons} from '../../icon_paths'
 
 class NavBar extends React.Component {
     render() {
@@ -26,12 +22,12 @@ class NavBar extends React.Component {
         return(
             <nav className="navbar navbar-expand-sm bg-white shade p-0">
                 <a className="navbar-brand col-sm-3 mr-0 py-2 p-0 d-none d-sm-flex justify-content-sm-end justify-content-center"  href="/all_requests">
-                    <img src={logo}/>
+                    <img src={icons.logo}/>
                 </a>
 
                 <div className='container-fluid justify-content-around d-sm-none'>
                     <a href="#" className="">
-                        <img src={logoSingle}/>
+                        <img src={icons.logoSingle}/>
                     </a>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target='#requestSupportedContent' aria-controls="requestSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +35,7 @@ class NavBar extends React.Component {
                     </button>
                 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target='#navbarSupportedContent' aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <img src={avatar} width="30" height="30"/>
+                        <img src={this.props.user_avatar} width="30" height="30"/>
                         <span className="dropdown-toggle user_name small"></span>
                     </button>
                 </div>
@@ -56,13 +52,13 @@ class NavBar extends React.Component {
                 <div className="collapse navbar-collapse offset-sm-1" id="navbarSupportedContent">
                     <div className="hide d-none d-sm-flex align-items-center">
                         <div className="location d-none d-lg-block mr-3">
-                            <img src={marker} className="rounded-circle mr-1" width="20" height="20"/>
+                            <img src={icons.marker} className="rounded-circle mr-1" width="20" height="20"/>
                             <span>{this.props.user_location}</span>
                         </div>
                 
                         <div className="nav-item dropdown">
                             <a className="dropdown-toggle p-0"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src={avatar} className="rounded-circle p-0 mr-1" width="30" height="30"/>
+                                <img src={this.props.user_avatar} className="rounded-circle p-0 mr-1" width="30" height="30"/>
                                 <span className="user_name">{this.props.user_name}</span>
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -75,7 +71,7 @@ class NavBar extends React.Component {
                     </div>
 
                     <a className="nav-item nav-link d-sm-none" href="#">
-                        <img src={marker} className="rounded-circle" width="20" height="20"/>Выбор города
+                        <img src={icons.marker} className="rounded-circle" width="20" height="20"/>Выбор города
                     </a>
                     <a className="nav-item nav-link d-sm-none" href="#">Общие настройки</a>
                     <Link to="/profile" className="nav-item nav-link d-sm-none">Настройки профиля</Link>

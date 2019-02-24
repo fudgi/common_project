@@ -2,11 +2,7 @@ import React from 'react'
 
 import Loading from '../common_components/loading'
 import Fetch from '../service/fetch'
-
-import star from '../../img/star.svg';
-import halfStar from '../../img/star_half.svg';
-import avatar from '../../img/avatar-man-1.svg'; 
-import editPhoto from '../../img/edit photo.svg';
+import {icons} from '../../icon_paths'
 
 class Profile extends React.Component {
     constructor(props) {
@@ -14,9 +10,7 @@ class Profile extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            user_data: {},
-            user_name: "Миша Смирнов",
-            user_location: "Казань"
+            user_data: {}
         }
         this.LeaveProfile = this.LeaveProfile.bind(this);
     }
@@ -27,7 +21,7 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        Fetch.getData('react-app-07/src/screens/profile/profile.php', {user_id: this.props.user_id})
+        Fetch.getData('/react-app-07/src/php/profile/profile.php', {user_id: this.props.user_id})
         .then((result) => this.setState({isLoaded: true, user_data: result, error: null}),
               (error) => this.setState({isLoaded: true, error}))
     }
@@ -47,16 +41,16 @@ class Profile extends React.Component {
                         <form className="mx-auto col-8 col-md-6 col-xl-6 p-4 needs-validation">
                             <div className="avatar text-center">
                                     <img className="rounded-circle" src={this.state.user_data.photo} alt="Avatar" width="140" height="140"/>
-                                    <img src={editPhoto} className="under-avatar"  width="50"/>
+                                    <img src={icons.edit_photo} className="under-avatar"  width="50"/>
                             </div>
 
                             <div className="rating-bar text-center mt-3">
                                 <span className="mr-2 align-middle">4,3</span>
-                                <img src={star} width="20" height="20"/>
-                                <img src={star} width="20" height="20"/>
-                                <img src={star}  width="20" height="20"/>
-                                <img src={star} width="20" height="20"/>
-                                <img src={halfStar} width="20" height="20"/>
+                                <img src={icons.star} width="20" height="20"/>
+                                <img src={icons.star} width="20" height="20"/>
+                                <img src={icons.star}  width="20" height="20"/>
+                                <img src={icons.star} width="20" height="20"/>
+                                <img src={icons.star_half} width="20" height="20"/>
                             </div>
 
                             <div className="text-center text-wrap mt-1">
