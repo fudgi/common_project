@@ -4,6 +4,7 @@ class CommentBlock extends React.Component {
     render() {
         return(
             <div className="mx-auto">Блок комментариев</div>
+            //TODO
         )
     }
 }

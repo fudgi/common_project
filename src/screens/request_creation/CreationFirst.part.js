@@ -1,4 +1,5 @@
 import React from 'react'
+import PositionInCreaton from './position_in_creation'
 import './request_creation.css'
 import {category_icons} from '../../icon_paths'
 
@@ -21,33 +22,8 @@ class RequestCreation extends React.Component{
         return(
             <main className="d-flex flex-column col-12 col-md-8 my-3 mx-auto">
 
-                <div className="d-flex justify-content-around mx-auto col-10 col-md-8 pt-5">
-                    <a href="#">
-                        <img src={category_icons.Category} width="50"/>
-                    </a>
-
-                    <div className="container d-flex gap flex-column justify-content-center m-0 p-0">
-                        <div>&nbsp;</div>
-                        <div>&nbsp;</div>
-                    </div>
-
-                    <img src={category_icons.Parameters0} width="50"/>
-
-                    <div className="container d-flex gap flex-column justify-content-center m-0 p-0">
-                        <div>&nbsp;</div>
-                        <div>&nbsp;</div>
-                    </div>
-
-                    <img src={category_icons.DueDate0} width="50"/>
-                </div>
-
-                <div className="category-names row col-12 mx-auto flex-nowrap mt-2">
-                    <a href="#" className="col-3 col-md-5 text-center">Категории</a>
-                    <span className="col-6 col-md-2 text-center">Параметры</span>
-                    <span className="col-3 col-md-5 text-center">Контакты и сроки</span>
-                </div>
-
-
+                <PositionInCreaton position={0} />
+                
                 <h5 className="category-list mt-5">Выберите категорию:</h5>
                 <div className="d-flex flex-column сol-10 p-4 bg-white rounded shade" id="category-selector" onClick={this.handleChange}>
                     <div className="row mx-auto category-list flex-column flex-md-row">

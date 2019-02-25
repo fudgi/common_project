@@ -73,7 +73,6 @@ class Gallery extends React.Component {
                 </div>
             </React.Fragment>
         )
-
     }
 
 }

@@ -13,9 +13,7 @@ class RequestCreationContainer extends React.Component {
         this.HandleCategoryTitle = this.HandleCategoryTitle.bind(this);
         this.HandleCategoryDate = this.HandleCategoryDate.bind(this);
         this.state = {
-            screen_position: 0,
-            user_name: "Миша Смирнов",
-            user_location: "Казань"
+            screen_position: 0
         };
 
         this.request= {

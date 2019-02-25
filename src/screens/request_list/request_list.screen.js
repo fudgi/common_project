@@ -15,7 +15,8 @@ class RequestList extends React.Component {
             selected_category:"1",
             error: null,
             isLoaded: false,
-            items: []
+            items: [],
+            categorySelectorOpened: false
         };
         this.categoryChange = this.categoryChange.bind(this);
         this.HandleNetworkUpdate = this.HandleNetworkUpdate.bind(this);
@@ -26,7 +27,6 @@ class RequestList extends React.Component {
     }
     
     componentDidMount() {
-        console.log("didMount")
         this.HandleNetworkUpdate();
     }
 
@@ -63,8 +63,16 @@ class RequestList extends React.Component {
         const { error, isLoaded } = this.state;
 
         if(this.props.location.pathname == "/all_requests"){
-            Sidebar = <Category user_id={this.props.user_id} categoryChange={this.categoryChange} selected_category={this.state.selected_category}/>
-            filter  = <Filter />;
+            Sidebar = <Category 
+                        user_id={this.props.user_id} 
+                        categoryChange={this.categoryChange} 
+                        selected_category={this.state.selected_category}
+                        categorySelectorOpened={this.state.categorySelectorOpened}
+                      />
+            filter  = <Filter 
+                        categoryChange={this.categoryChange} 
+                        categorySelectorOpened={this.state.categorySelectorOpened}
+                      />;
         }
 
         if (error) {
@@ -74,8 +82,12 @@ class RequestList extends React.Component {
             return <Loading />
         }
         else {
+            let categoryToggled = "mt-2";
+            if(this.state.categorySelectorOpened == true) {
+                categoryToggled = "mt-2 toggled";
+            }
             return (
-                <main className="mt-2" id="wrapper">
+                <main className={categoryToggled} id="wrapper">
                     {Sidebar}
                     <div id="page-content-wrapper" className="d-flex">
                         <div className="center-field flex-fill">
@@ -86,7 +98,7 @@ class RequestList extends React.Component {
                                 })}
                             </div>
                         </div>  
-                        <div className="right-side d-none d-xl-block" style={{minWidth: 250}}></div>
+                        <div className="right-side d-none d-lg-block" style={{minWidth: 250}}></div>
                     </div>
                 </main>
             )

@@ -1,21 +1,24 @@
 import React from 'react'
-
+import PositionInCreaton from './position_in_creation'
 import './request_creation.css'
 import {icons, category_icons} from '../../icon_paths'
 
 class RequestCreation extends React.Component{
     constructor(props) {
         super(props);
+        this.refTitle = React.createRef();
+        this.refDescription = React.createRef();
+        this.refPrice = React.createRef();
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e) {
         e.preventDefault();
-        let requestTitle = document.getElementById('request-title');
-        let requestDescription = document.getElementById('request-description');
-        let requestPrice = document.getElementById('request-price');
-        if (requestTitle.value != '' && requestDescription.value != '' && requestPrice.value != ''){
-            this.props.onTitleSelect(requestTitle.value, requestDescription.value, requestPrice.value);
+        let title = this.refTitle.current.value;
+        let price = this.refPrice.current.value;
+        let description = this.refDescription.current.value;
+        if (title!='' && price!='' && description!=''){
+            this.props.onTitleSelect(title, description, price);
         }
         else alert("Заполните все поля");
     }
@@ -24,50 +27,22 @@ class RequestCreation extends React.Component{
         return(
             <main className="d-flex flex-column col-12 col-md-8 my-3 mx-auto">
 
-                <div className="d-flex justify-content-around mx-auto col-10 col-md-8 pt-5">
-                    <a href="#">
-                        <img src={category_icons.Category} width="50"/>
-                    </a>
-        
-                    <div className="container d-flex purp-gap flex-column justify-content-center m-0 p-0">
-                        <div>&nbsp;</div>
-                        <div>&nbsp;</div>
-                    </div>
-        
-                    <a href="#">
-                        <img src={category_icons.Parameters1} width="50"/>
-                    </a>
-        
-                    <div className="container d-flex gap flex-column justify-content-center m-0 p-0">
-                        <div>&nbsp;</div>
-                        <div>&nbsp;</div>
-                    </div>
-        
-                    <a href="#">
-                        <img src={category_icons.DueDate0} width="50"/>
-                    </a>
-                </div>
-                <div className="category-names row col-12 mx-auto flex-nowrap mt-2">
-                    <a href="#" className="col-3 col-md-5 text-center">Категории</a>
-                    <a href="#" className="col-6 col-md-2 text-center">Параметры</a>
-                    <span className="col-3 col-md-5 text-center">Контакты и сроки</span>
-                </div>
-
+                <PositionInCreaton position={1} />
 
                 <h5 className="category-list mt-5 ml-4">Параметры:</h5>
                 <div className="d-flex flex-column сol-10 p-4 bg-white rounded shade">
-                    <label for="request-title">Что?</label>
-                    <input type="text" className="searchbar mb-4" id="request-title" placeholder="Платье в пол красного цвета"/>
+                    <label htmlFor="request-title">Что?</label>
+                    <input type="text" className="searchbar mb-4" placeholder="Платье в пол красного цвета" ref={this.refTitle}/>
 
-                    <label for="request-price">Цена:</label>
+                    <label htmlFor="request-price">Цена:</label>
 
                     <div>
-                        <input type="number" className="searchbar" placeholder="1000" id="request-price"/>
+                        <input type="number" className="searchbar" placeholder="1000" ref={this.refPrice}/>
                         <img src={icons.ruble}/>
                     </div>
 
-                    <label for="request-description" className="mb-2 mt-5">Описание:</label>
-                    <textarea name="description" id="request-description" className="textarea mb-4 rounded p-3" rows="5" placeholder="Платье шуруповерт супер"></textarea>
+                    <label htmlFor="request-description" className="mb-2 mt-5">Описание:</label>
+                    <textarea name="description" className="textarea mb-4 rounded p-3" rows="5" placeholder="Платье шуруповерт супер" ref={this.refDescription}></textarea>
 
 
                 <div className="mt-2 d-flex align-items-center">

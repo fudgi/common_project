@@ -11,16 +11,20 @@ class FilterTop extends React.Component {
 
     sideBarOpener(e) {
         e.preventDefault();
-        document.getElementById("wrapper").classList.toggle('toggled');
-        document.getElementById("menu-toggle").classList.toggle('invisible');
+        this.props.categoryChange({categorySelectorOpened: true});
     }
     
     render(){
+        let categoryOpener;
+        if (this.props.categorySelectorOpened == false){
+            categoryOpener = 
+                <a href="" class="btn d-md-none" id="menu-toggle" onClick={this.sideBarOpener}>
+                    <span>&#10094;</span>
+                </a>
+        }
         return(
             <React.Fragment>
-                <a href="#" class="btn d-md-none" id="menu-toggle" onClick={this.sideBarOpener}>
-                    <img src={icons.sidebarOpen} width="10" className="d-md-none" id="menu-toggle"/>
-                </a>
+                {categoryOpener}
                 <section className="sort-top">
                     <div className="d-flex flex-column flex-sm-row  align-items-center justify-content-sm-between">
                         <div className="searchbar col-10 col-sm-4 d-flex pl-0 mb-2 mb-sm-0">

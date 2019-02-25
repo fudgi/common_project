@@ -15,8 +15,9 @@ class SortCategory extends React.Component {
 
     SideBarClose(e) {
         e.preventDefault();
-        document.getElementById("wrapper").classList.toggle("toggled");
-        document.getElementById("menu-toggle").classList.toggle("invisible");
+        this.props.categoryChange({categorySelectorOpened: false});
+        // document.getElementById("wrapper").classList.toggle("toggled");
+        // document.getElementById("menu-toggle").classList.toggle("invisible");
     }
 
     SiderBarCategoryClick(e) {
@@ -34,34 +35,39 @@ class SortCategory extends React.Component {
     }
 
     render() {
-            return (
-                <div id="sidebar-wrapper" onClick={this.SiderBarCategoryClick}> 
-                    <ul className="sidebar-nav">
-                        <li>
-                            <a href="#" className="btn d-md-none mt-3 d-flex justify-content-end" id="in-menu-toggle"  onClick={this.SideBarClose}>
-                                <img src= {icons.close} width="20" height="20" id="in-menu-toggle" alt="category-open"/>
-                            </a>
-                        </li>
-                        <li className="sidebar-brand">
-                            Категории:
-                        </li>
-                        <li>
-                            <ul className="accordion m-0 p-0" id="accordionExample">
-                                <li>
-                                    <span className={this.props.selected_category=="1"? "choosen":""} data-id="1">Все</span>
-                                </li>
-                                {this.state.items.map(item => {
-                                    return (
-                                        <li>
-                                            <span className={item.category_id == this.props.selected_category? "choosen":""} data-id={item.category_id}>{item.category_name}</span>
-                                        </li>
-                                    )  
-                                })}
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            )
+        let categoryCloser = "";
+        if (this.props.categorySelectorOpened == true){
+            categoryCloser = 
+                    <a href="#" className="btn d-md-none mt-3 d-flex justify-content-end" id="in-menu-toggle"  onClick={this.SideBarClose}>
+                        <img src= {icons.close} width="20" height="20" id="in-menu-toggle" alt="category-open"/>
+                    </a>
+        }
+        return (
+            <div id="sidebar-wrapper" onClick={this.SiderBarCategoryClick}> 
+                <ul className="sidebar-nav">
+                    <li>
+                        {categoryCloser}
+                    </li>
+                    <li className="sidebar-brand">
+                        Категории:
+                    </li>
+                    <li>
+                        <ul className="accordion m-0 p-0" id="accordionExample">
+                            <li>
+                                <span className={this.props.selected_category=="1"? "choosen":""} data-id="1">Все</span>
+                            </li>
+                            {this.state.items.map(item => {
+                                return (
+                                    <li>
+                                        <span className={item.category_id == this.props.selected_category? "choosen":""} data-id={item.category_id}>{item.category_name}</span>
+                                    </li>
+                                )  
+                            })}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        )
     }
 }
 

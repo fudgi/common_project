@@ -5,36 +5,32 @@ import Map from '../common_components/Map'
 import Time from '../service/time'
 import {icons} from '../../icon_paths'
 
-
 class RequestAnswer extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            mapOpened: false
+        }
+        this.mapOpen = React.createRef();
+        this.mapOpenerText = React.createRef();
         this.dropDownNameChange = this.dropDownNameChange.bind(this);
     }
 
     dropDownNameChange(e){
         e.preventDefault();
-        let text = document.getElementById('dropDownText')
-        let showMore = document.getElementById('showMore');
-        if(showMore.classList.contains('show')) {
-            text.textContent = "Показать больше";
-            showMore.classList.toggle('show')
-        }
-        else {
-            text.textContent = "Скрыть";
-            showMore.classList.toggle('show');
-        }
+        this.setState({mapOpened: !(this.state.mapOpened)});
     }
 
     render() {
         let hideMap;
         let user_data;
-        let show = 'collapse';
         //На втором экране усеченный верх
         if (this.props.URLpath == "my_requests"){
-            hideMap =   <a href="#" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="map" className='container-fluid purp-back text-center py-2' onClick={this.dropDownNameChange}>
-                            <span id="dropDownText">Показать больше</span>
-                            <img className="ml-2" src={icons.arrowDown}/>
+            hideMap =   <a  href="" data-toggle="collapse" role="button" aria-expanded="false"
+                            aria-controls="map" className='container-fluid purp-back text-center py-2'
+                            onClick={this.dropDownNameChange} style={{borderBottomRightRadius: "5px", borderBottomLeftRadius: "5px"}}>
+                                <span ref={this.mapOpenerText}>{!this.state.mapOpened? "Показать больше" : "Скрыть"}</span>
+                                <img className="ml-2" src={icons.arrowDown} style={this.state.mapOpened?{transform: `rotate(180deg)`}:{}}/>
                         </a>
 
             user_data = <div className="my-3">
@@ -42,12 +38,23 @@ class RequestAnswer extends React.Component {
                             <span className="text-muted ml-2">{this.props.data.request_location}</span>
                         </div>
         }
-        else {  user_data= <AboutUser  
-                            username={this.props.data.username}
-                            photo={this.props.data.photo}
-                            phone={this.props.data.telephone}
-                            location={this.props.data.request_location}/>
-                show = 'collapse show';}
+        else user_data = 
+                <AboutUser  
+                    username={this.props.data.username}
+                    photo={this.props.data.photo}
+                    phone={this.props.data.telephone}
+                    location={this.props.data.request_location}
+                />;
+
+        let map;
+        if(this.state.mapOpened || this.props.URLpath != "my_requests") {
+            map = 
+                <div ref={this.mapOpened}>
+                    <legend id="map" className="d-block m-0">
+                        <Map placemark={[55.7578993,37.6582756]}/>
+                    </legend>
+                </div>
+        }
         return (
             <main className="d-flex flex-column mx-auto col-8 p-0  mt-3 rounded bg-white">
                 <a href="#"  className="ml-auto mt-4 mr-4">
@@ -64,11 +71,7 @@ class RequestAnswer extends React.Component {
                     <p className="font-weight-bold">{this.props.data.request_price}Р</p>
                     {user_data}
                 </div>
-                <div class={show} id="showMore">
-                    <legend id="map" className="d-block m-0">
-                        <Map placemark={[55.7578993,37.6582756]}/>
-                    </legend>
-                </div>
+                {map}
                 {hideMap}
             </main>
         )
