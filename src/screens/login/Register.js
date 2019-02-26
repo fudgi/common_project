@@ -1,57 +1,61 @@
 import React from 'react'
+import { withRouter, Link } from 'react-router-dom'
 
 import Title from './components/title'
 import SocialBlock from './components/socialLinks'
 import InputBlock from './components/inputGroup'
 import Button from './components/button'
-import BottomPart from './components/bottomPart'
 
 class Register extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            email: 0,
-            password: 0
+            email: "",
+            password: ""
         }
         this.registerSend = this.registerSend.bind(this);
-        this.loginScreenCall = this.loginScreenCall.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.politics = this.politics.bind(this);
         this.conditions = this.conditions.bind(this);
     }
 
-    loginScreenCall(){
-        this.props.screenChanger({screen_position: 0});
-    }
-
     registerSend(){
-        Fetch.getData('/react-app-07/src/screens/login/php/register.php',{email:this.state.email, password:this.state.password})
-        .this((result) => this.props.screenChanger({screen_position: 3}))
-        .catch(() => alert("Ошибка регстрации"))
+        alert("Отправка данных")
     }
 
     handleChange(data) {
         this.setState({data});
     }
 
-    politics(){}
-    conditions(){}
+    politics(){
+        alert("Политика")
+    }
+    conditions(){
+        alert("Условия")
+    }
 
     render(){
         return(
             <React.Fragment>
-                <Title title="Регистрация"/>
-                <SocialBlock />
-                <InputBlock name="email" nameOfHelper="emailHelper" placeholder="Email" func={this.handleChange}/>
-                <InputBlock name="password" nameOfHelper="passwordHelper" placeholder="Пароль" func={this.handleChange}/>
-                <Button nameOfTheButton="Зарегистрироваться" func={this.registerSend}/>
-                <div class="text-center text-wrap py-4">
-                    Регистрируясь, вы подтверждаете, что принимаете 
-                    <a href='$' id='refConditions' onClick={this.conditions}>Условия пользователя</a>
-                     и 
-                    <a href="$" id="refPolitics" class="ml-2" onClick={this.politics}>Политику конфиденциальности</a>
-                </div>
-                <BottomPart leftSideText="Уже имеете аккаунт? " refText="Выполните вход" id="refSignUp" href="$" func={this.loginScreenCall}/>
+                <main class="mx-auto col-6  mt-3 shade radius bg-white">
+                    <form class="mx-auto col-10 col-md-7 col-xl-6 p-2 needs-validation">
+                        <Title title="Регистрация"/>
+                        <SocialBlock />
+                        <InputBlock name="email" nameOfHelper="emailHelper" placeholder="Email" func={this.handleChange}/>
+                        <InputBlock name="password" nameOfHelper="passwordHelper" placeholder="Пароль" func={this.handleChange}/>
+                        <Button nameOfTheButton="Зарегистрироваться" func={this.registerSend}/>
+                        <div class="text-center text-wrap pb-2">
+                            <span>Регистрируясь, вы подтверждаете, что принимаете </span>
+                            <a href="" id='refConditions' onClick={this.conditions}>Условия пользователя</a>
+                            <span> и </span>
+                            <a href="" id="refPolitics" class="ml-2" onClick={this.politics}>Политику конфиденциальности</a>
+                        </div>
+                        <div class="text-center text-wrap py-2">
+                            <span>Уже имеете аккаунт?</span>
+                            <Link className="ml-2" to="/login">Выполните вход</Link>
+                        </div>
+                    </form>
+                </main>
             </React.Fragment>
         )
     }

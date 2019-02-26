@@ -1,7 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom"
 
-// import Login from './login/Login.screen'
+import Login from './login/login'
+import Register from './login/register'
+import ForgetPassword from './login/forget_password'
+import AnswerScreen from './login/answer_screen'
 import RequestCreation from './request_creation/RequestCreation.screen'
 import Profile from './profile/Profile.screen'
 import RequestList from './request_list/request_list.screen'
@@ -58,6 +61,27 @@ class App extends React.Component {
                                     user_id={this.state.user_id}
                             />}
                         />
+
+                        <Route
+                            exact path="/login"
+                            component= {Login}
+                        />
+
+                        <Route
+                            exact path="/register"
+                            component= {Register}
+                        />
+
+                        <Route
+                            exact path="/forget_password"
+                            component={ForgetPassword}
+                        />
+
+                        <Route
+                            exact path="/answer_screen"
+                            component={AnswerScreen}
+                        />
+                        
                         <Redirect from="/*" to="/all_requests" />
                     {/* <Route exact path="/" render={() => (<Redirect to="/all_requests"/>)}/> */}
                     </Switch>
