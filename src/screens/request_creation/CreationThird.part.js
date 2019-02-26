@@ -11,8 +11,7 @@ class RequestCreation extends React.Component{
         super(props);
         this.state = {
             whenButtonId: "",
-            tillButtonId: "",
-            location: ""
+            tillButtonId: ""
         }
         this.whenDateSelected = React.createRef();
         this.tillDateSelected = React.createRef();

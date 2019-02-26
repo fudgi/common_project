@@ -11,7 +11,7 @@ import '../../css/simple-sidebar.css';
 class RequestList extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             selected_category:"1",
             error: null,
             isLoaded: false,

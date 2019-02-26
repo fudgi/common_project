@@ -16,8 +16,6 @@ class SortCategory extends React.Component {
     SideBarClose(e) {
         e.preventDefault();
         this.props.categoryChange({categorySelectorOpened: false});
-        // document.getElementById("wrapper").classList.toggle("toggled");
-        // document.getElementById("menu-toggle").classList.toggle("invisible");
     }
 
     SiderBarCategoryClick(e) {
