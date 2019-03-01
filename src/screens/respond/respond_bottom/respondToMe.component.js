@@ -14,14 +14,14 @@ class RespondComponent extends React.Component {
         Fetch.getData('/react-app-07/src/php/respond/answerToMeDecline.php',
         {respond_id:this.props.item.id, request_id: this.props.item.request_id})
         .then(() => this.props.updateComponentHandle())
-        .catch(() => alert("Ошибка"))
+        .catch((error) => error(this))
     }
 
     ConfirmButton(e){
         Fetch.getData('/react-app-07/src/php/respond/answerToMeApprove.php',
         {respond_id:this.props.item.id,  request_id: this.props.item.request_id})
-        .then(() => {this.props.updateComponentHandle()})
-        .catch(() => alert("Ошибка подтверждения"))
+        .then(() => this.props.updateComponentHandle())
+        .catch((error) => error(this))
     }
 
     render(){

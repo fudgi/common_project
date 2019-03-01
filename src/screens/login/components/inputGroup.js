@@ -12,16 +12,18 @@ class Input extends React.Component{
     }
     change(e){
         e.target.previousSibling.classList.remove('invisible');
-        this.props.func(e.target.value);
+        let object = {};
+        object[e.target.name] = e.target.value;
+        this.props.func(object);
     }
     
     render(){
         return(
             <div class="form-group mt-1">
-                <span id={this.props.nameOfHelper} class="form-text text-muted invisible mb-1" style={{paddingLeft:"0.7rem"}}>
+                <span class="form-text text-muted invisible mb-1" style={{paddingLeft:"0.7rem"}}>
                     {this.props.placeholder}
                 </span>
-                <input type={this.props.name} name={this.props.name} aria-describedby={this.props.nameOfHelper} class="form-control font-weight-light " placeholder={this.props.placeholder}  required 
+                <input type={this.props.name} name={this.props.name} aria-describedby={this.props.nameOfHelper} class="form-control font-weight-light" placeholder={this.props.placeholder}  required 
                 onChange={this.change} onBlur={this.blured}/>
                 <div class="invalid-feedback">
                     Введите {this.props.placeholder}

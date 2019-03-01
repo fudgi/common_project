@@ -47,8 +47,8 @@ class RequestCreationContainer extends React.Component {
         this.request.tillDate = category_tillDate;
         this.request.location = category_location;
         Fetch.getData("/react-app-07/src/php/request_creation/request_creation.php", this.request)
-        .then(() => this.props.history.push('/my_requests'))
-        .catch(()=> alert("Ошибка создания запроса"))
+        .then((res) => this.props.history.push('/my_requests'))
+        .catch((error)=> error(this))
         
     }
 

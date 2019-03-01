@@ -84,6 +84,7 @@ main .container{
 .form-control:focus {
     outline: 0;
     box-shadow: 0 0 2px 2px rgb(164, 109, 201);
+    border-radius: 2px;
     border-color: rgba(172, 158, 158, 0.5);
 }
 .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated
@@ -112,12 +113,16 @@ main .container{
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
     background-color: #7B3CA5;
-}
-.custom-control-input:checked ~ .custom-control-label::before {
     box-shadow: 0 0 0 1px #fff;
+    border: #7B3CA5;
 }
+.was-validated .custom-control-input{
+    border: 1px solid skyblue;
+}
+
 .custom-control-input:focus ~ .custom-control-label::before {
     box-shadow: 0 0 0 1px #fff;
+
 }
 .was-validated .custom-control-input:valid ~ .custom-control-label,
 .custom-control-input.is-valid ~ .custom-control-label {
@@ -125,11 +130,12 @@ main .container{
 }
 .was-validated .custom-control-input:valid ~ .custom-control-label::before, 
 .custom-control-input.is-valid ~ .custom-control-label::before {
-    background-color: #e9ecef;
+    background-color: #ffffff;
+    border-color: rgba(129, 125, 125, 0.5);
 }
 .was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, 
 .custom-control-input.is-valid:checked ~ .custom-control-label::before {
-    background-color: rgb(164, 109, 201);
+    background-color: #7B3CA5;
 }
 .was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, 
 .custom-control-input.is-valid:focus ~ .custom-control-label::before {
@@ -289,3 +295,4 @@ h5.category-list{
     width: auto;
     height: 100%;
 };
+

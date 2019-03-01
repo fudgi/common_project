@@ -1,7 +1,9 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
     require_once('../MySQL_Transaction.php');
+    require_once('../authentificator.php');
 
+    Authentificator::check();
     MySQL_Transaction::connectionSetup();
     $gettedData = json_decode(file_get_contents('php://input'));
     $query = "SELECT 
@@ -21,7 +23,7 @@
     $data []= MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
     
     //содержание отклика
-    $query = "SELECT * FROM `request_respond_data` WHERE `request_id`='{$gettedData->request_id}' AND `user_id`='{$gettedData->user_id}'";
+    $query = "SELECT * FROM `request_respond_data` WHERE `request_id`='{$gettedData->request_id}' AND `user_id`='{$_SESSION['user_id']}'";
     $tempdata[] = MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query))[0];
 
     //загрузка фото из отклика
@@ -36,4 +38,4 @@
     }
 
     $data[] = $tempdata;
-    echo json_encode($data);
+    MySQL_Transaction::sendBack("OK",$data);

@@ -5,7 +5,7 @@ import Filter from './filter_top'
 import RequestComponent from './request_component'
 import Loading from '../common_components/loading'
 import Fetch from '../service/fetch'
-
+import { withRouter } from 'react-router-dom'
 import '../../css/simple-sidebar.css';
 
 class RequestList extends React.Component {
@@ -53,9 +53,9 @@ class RequestList extends React.Component {
                 path='/react-app-07/src/php/request_list/myResponds.php';
                 break;
         }
-        Fetch.getData(path, {user_id: this.props.user_id, selected_category:this.state.selected_category})
+        Fetch.getData(path, {selected_category:this.state.selected_category})
         .then((result) => this.setState({isLoaded: true, items: result, error: null}))
-        .catch((error) => this.setState({isLoaded: true, error}))
+        .catch((error) => error(this))
     }
     
     render() {
@@ -64,7 +64,6 @@ class RequestList extends React.Component {
 
         if(this.props.location.pathname == "/all_requests"){
             Sidebar = <Category 
-                        user_id={this.props.user_id} 
                         categoryChange={this.categoryChange} 
                         selected_category={this.state.selected_category}
                         categorySelectorOpened={this.state.categorySelectorOpened}
@@ -106,4 +105,4 @@ class RequestList extends React.Component {
     }
 }
 
-export default RequestList
+export default withRouter(RequestList)

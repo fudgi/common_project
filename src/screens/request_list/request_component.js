@@ -27,7 +27,7 @@ class RequestComponent extends React.Component {
         switch (this.props.type) {
 
             case "/all_requests":
-                if(this.props.data.has_respond != 1){
+                if(this.props.data.has_respond == 0){
                     button = {color: "btn purp-button", text: "Откликнуться", funcOnClick: this.requestButtonClick};
                 }
             case "/my_responds":

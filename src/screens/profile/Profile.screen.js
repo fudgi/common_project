@@ -16,14 +16,13 @@ class Profile extends React.Component {
     }
 
     LeaveProfile(e) {
-        e.preventDefault();
-        this.props.stateChanger({screen_id:"6", responding: false});
+       
     }
 
     componentDidMount() {
-        Fetch.getData('/react-app-07/src/php/profile/profile.php', {user_id: this.props.user_id})
+        Fetch.getData('/react-app-07/src/php/profile/profile.php', "")
         .then((result) => this.setState({isLoaded: true, user_data: result, error: null}),
-              (error) => this.setState({isLoaded: true, error}))
+              (error) => error(this))
     }
 
     render() {

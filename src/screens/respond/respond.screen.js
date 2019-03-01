@@ -33,9 +33,9 @@ class RespondScreen extends React.Component {
                 path = '/react-app-07/src/php/respond/respondChangeLoad.php'
                 break;
         }
-        Fetch.getData(path, {request_id: this.props.match.params.id, user_id: this.props.user_id})
+        Fetch.getData(path, {request_id: this.props.match.params.id})
             .then((result) => this.setState({isLoaded: true,items: result, error: null}),
-                  (error) => this.setState({isLoaded: true, error}))
+                  (error) => error(this))
     }
 
     componentDidMount() {

@@ -12,28 +12,45 @@ class Auth extends React.Component{
         super(props);
         this.state={
             email: "",
-            password: ""
+            password: "",
+            remember: false
         }
+        this.form = React.createRef();
         this.loginSend = this.loginSend.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.rememberMe = this.rememberMe.bind(this);
     }
 
-    loginSend(){
-        alert("Отправка данных")
-        //Data Fill Check
-        // Fetch.getData('/react-app-07/src/screens/login/php/login.php',{email:this.state.email, password:this.state.password})
-        // .this((result) => this.props.history.push("/all_requests"))
-        // .catch(() => alert("Ошибка авторизации"))
+    loginSend(e){
+        e.preventDefault();
+        if(this.form.current.checkValidity() == false){
+            this.form.current.classList.add('was-validated');
+            return;
+        }
+        Fetch.getData('/react-app-07/src/php/login/login.php', this.state)
+        .then(() => {this.props.loggedChanger({logged:true}); this.props.history.push("/all_requests")})
+        .catch((error) => this.props.loggedChanger({logged:false}))
     }
 
     handleChange(data) {
-        this.setState({data});
+        this.setState(data);
+    }
+
+    rememberMe(e){
+        if(e.target.checked)this.setState({remember:true})
+        else this.setState({remember:false})
+    }
+
+    componentDidMount(){
+        Fetch.getData('/react-app-07/src/php/login/logged_check.php')
+        .then(() => {this.props.loggedChanger({logged:true});this.props.history.push("/all_requests");})
+        .catch((error)=> this.props.loggedChanger({logged:false}))
     }
 
     render(){
         return(
             <main class="mx-auto col-6  mt-3 shade radius bg-white">
-                <form class="mx-auto col-10 col-md-7 col-xl-6 p-2 needs-validation">
+                <form class="mx-auto col-10 col-md-7 col-xl-6 p-2 needs-validation" ref={this.form}>
                     <Title title="Вход"/>
                     <SocialBlock />
                     <InputBlock name="email" nameOfHelper="emailHelper" placeholder="Email" func={this.handleChange}/>
@@ -41,8 +58,8 @@ class Auth extends React.Component{
                     <Button nameOfTheButton="Войти" func={this.loginSend}/>
 
                     <div class="d-flex justify-content-center justify-content-lg-between flex-wrap my-3">
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="exampleCheck1"/>
+                        <div class="custom-control custom-checkbox  noselect">
+                            <input class="custom-control-input noselect" name="checkbox" id="exampleCheck1" type="checkbox" onClick={this.rememberMe}/>
                             <label class="custom-control-label" for="exampleCheck1">Запомнить меня</label>
                         </div>
                         <Link className="ml-2" to="/forget_password">

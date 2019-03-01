@@ -23,7 +23,6 @@ class Respond_Bottom extends React.Component {
             return;
         }
         let formData = new FormData();
-        formData.append("responder_id", this.props.user_id);
         formData.append("request_id", this.props.request_id);
         formData.append("price", price.value);
         formData.append("description", description.value);
@@ -38,8 +37,16 @@ class Respond_Bottom extends React.Component {
 
         fetch("/react-app-07/src/php/respond/myAnswerSave.php", dataToSend)
             .then(res => res.json())
+            .then(res => {
+                if(res.status == "OK") return res.data
+                else throw res.data
+            })
+            .catch((error) => {
+                if(error == "not logged in") throw function (putContext){putContext.props.history.push("/login")};
+                else throw () => alert(error)
+            })
             .then((res) => this.props.history.push("/my_responds/" + this.props.request_id))
-            .catch(() => alert("Неудачная попытка создания отклика"))
+            .catch((error) => error(this))
     }
 
     imageFilesGetCallback(acceptedFiles){

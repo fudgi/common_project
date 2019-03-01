@@ -1,7 +1,9 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
     require_once('../MySQL_Transaction.php');
+    require_once('../authentificator.php');
 
+    Authentificator::check();
     MySQL_Transaction::connectionSetup();
     $gettedData = json_decode(file_get_contents('php://input'));
 
@@ -10,23 +12,23 @@
         $condition = "";
     }
     $query = "SELECT 
-                r.request_id, 
-                r.creator_user_id, 
-                r.request_title,
-                r.request_location, 
-                r.request_whenDate, 
-                r.request_tillDate,
-                r.request_price,
-                u.user_id, 
-                u.username, 
-                u.photo,
-                COUNT(rr.user_id) AS has_respond
-                FROM request_data r
-                LEFT JOIN user_data u ON r.creator_user_id=u.user_id 
-                LEFT JOIN request_respond_data rr ON rr.request_id=r.request_id
-                WHERE r.creator_user_id != '9'
-                AND r.request_active = 1 ".$condition."
-                GROUP BY 1";
+            r.request_id, 
+            r.creator_user_id, 
+            r.request_title,
+            r.request_location, 
+            r.request_whenDate, 
+            r.request_tillDate,
+            r.request_price,
+            u.user_id, 
+            u.username, 
+            u.photo,
+            COUNT(rr.user_id) AS has_respond
+            FROM request_data r
+            LEFT JOIN user_data u ON r.creator_user_id=u.user_id 
+            LEFT JOIN request_respond_data rr ON rr.request_id=r.request_id AND rr.user_id='{$_SESSION['user_id']}'
+            WHERE r.creator_user_id != '{$_SESSION['user_id']}'
+            AND r.request_active = 1.$condition
+            GROUP BY 1";
                 
     $data = MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query));
-    echo json_encode($data);
+    MySQL_Transaction::sendBack("OK",$data);

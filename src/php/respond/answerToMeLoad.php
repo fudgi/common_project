@@ -1,7 +1,9 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
     require_once('../MySQL_Transaction.php');
+    require_once('../authentificator.php');
 
+    Authentificator::check();
     MySQL_Transaction::connectionSetup();
     $gettedData = json_decode(file_get_contents('php://input'));
     $query = "SELECT 
@@ -56,6 +58,6 @@
     } else {
         $data []="0";
     }
-    echo json_encode($data);
+    MySQL_Transaction::sendBack("OK",$data);
 
     

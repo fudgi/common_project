@@ -1,9 +1,10 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
     require_once('../MySQL_Transaction.php');
+    require_once('../authentificator.php');
 
+    Authentificator::check();
     MySQL_Transaction::connectionSetup();
-    $gettedData = json_decode(file_get_contents('php://input'));
     $query = "SELECT 
                     r.request_id, 
                     r.request_title, 
@@ -18,7 +19,7 @@
                     ON r.request_id=rr.request_id AND (rr.state <> 0 OR rr.state IS NULL)
                     LEFT JOIN request_respond_data rrr
                     ON r.request_id=rrr.request_id AND rrr.state = 1
-                    WHERE r.creator_user_id= '{$gettedData->user_id}'
+                    WHERE r.creator_user_id= '{$_SESSION['user_id']}'
                     GROUP BY 1";
     $data = MySQL_Transaction::fetchData(MySQL_Transaction::querySender($query));
-    echo json_encode($data);
+    MySQL_Transaction::sendBack("OK",$data);

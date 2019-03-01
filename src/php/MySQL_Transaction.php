@@ -34,5 +34,9 @@
         public static function getLastID(){
             return mysqli_insert_id(self::$link);
         }
+
+        public static function sendBack($status, $data){
+            $answer=["status"=>$status, "data"=>$data];
+            echo json_encode($answer);
+        }
     }
-?>

@@ -11,60 +11,56 @@ import RequestList from './request_list/request_list.screen'
 import Responds from './respond/respond.screen'
 import Header from './common_components/header'
 import Navbar from './common_components/navbar'
+import NavbarClean from './common_components/navbar_clean'
 
 
 class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            user_id: "9",
-            user_name: "Миша Смирнов",
-            user_location: "Казань",
-            user_avatar: '/react-app-07/src/img/user_avatar/avatar-man-1.svg'
-        };
+            logged: false
+        }
+        this.loggedChanger = this.loggedChanger.bind(this);
     }
-   
+
+    loggedChanger(data){
+        this.setState(data);
+    }
     render() {
         return (
             <Router basename="/">
                 <React.Fragment>
                 <Header />
-                <Navbar user_name={this.state.user_name} user_location={this.state.user_location} user_avatar={this.state.user_avatar}/>
+                {this.state.logged?<Navbar />:<NavbarClean />}
                     <Switch>
                         {["/all_requests", "/my_requests", "/my_responds"].map((path, index) => 
                             <Route
                                 exact path={path}
-                                render= {props => <RequestList {...props} user_id={this.state.user_id}/>}
+                                component = {RequestList}
                                 key={index} 
                             />
                         )}
                         {["/all_requests/:id", "/my_requests/:id", "/my_responds/:id"].map((path, index) => 
                             <Route
                                 exact path={path}
-                                render= {props => <Responds {...props} user_id={this.state.user_id} />}
+                                component = {Responds}
                                 key={index} 
                             />
                         )}
 
                         <Route
                             exact path="/request_creation"
-                            render= {props =>   
-                                <RequestCreation {...props} 
-                                    user_id={this.state.user_id}
-                            />}
+                            component = {RequestCreation}
                         />
 
                         <Route
                             exact path="/profile"
-                            render= {props =>   
-                                <Profile {...props} 
-                                    user_id={this.state.user_id}
-                            />}
+                            component = {Profile}
                         />
 
                         <Route
                             exact path="/login"
-                            component= {Login}
+                            render={()=><Login loggedChanger={this.loggedChanger}/>}/>
                         />
 
                         <Route
@@ -82,7 +78,7 @@ class App extends React.Component {
                             component={AnswerScreen}
                         />
                         
-                        <Redirect from="/*" to="/all_requests" />
+                        <Redirect from="/*" to="/login" />
                     {/* <Route exact path="/" render={() => (<Redirect to="/all_requests"/>)}/> */}
                     </Switch>
                 </React.Fragment>

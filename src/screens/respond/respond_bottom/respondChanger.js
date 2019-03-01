@@ -20,11 +20,11 @@ class Respond_Bottom extends React.Component {
 
     cancelAnswer() {
         //Восстановить
-        let data = {user_id:this.props.user_id, request_id:this.props.request_id, respond_id: this.props.items[0].id};
+        let data = {request_id:this.props.request_id, respond_id: this.props.items[0].id};
         
         Fetch.getData('/react-app-07/src/php/respond/respondDelete.php', data)
             .then(()=>this.props.history.push("/my_responds"))
-            .catch(()=>alert("Ошибка удаления отклика на запрос"));
+            .catch((error)=>error(this));
     }
 
     render() {
