@@ -4,12 +4,15 @@
     class Authentificator {
 
         public static function check(){
-            // if (isset($_COOKIE["TestCookie"])) {
-            //     session_id($_COOKIE["TestCookie"]);
-            // }
-            session_start();
+            if (isset($_COOKIE["session_id"])) {
+                session_id($_COOKIE["session_id"]);
+                session_start();
+            }
+            else {
+                session_start();
+                setcookie("session_id", session_id(), mktime(0,0,0,12,31,2019));
+            }
             // echo session_id();
-            // setcookie("TestCookie", session_id());
             // echo json_encode($_SESSION);
             // $_SESSION['user_id'] = NULL;
             // echo $_SESSION['user_id'];

@@ -18,7 +18,7 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            logged: false
+            logged: true
         }
         this.loggedChanger = this.loggedChanger.bind(this);
     }
