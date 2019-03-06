@@ -14,6 +14,7 @@
     React-Yandex-Map
     Bootstrap
     Bootstrap-DatePicker
+    
     Сборка проекта с помощью React-create-app. 
     
 Серверная часть: 
@@ -31,11 +32,33 @@
     <img src="https://pp.userapi.com/c845324/v845324793/1bd1db/OjlsfIOrp2g.jpg" width="40%"/>
 </div>
    
-Экран "Все запросы"
+Экран "Все запросы", отражающий все запросы пользователей, в том числе те, на которые уже оставлен отклик.
+На этом же экране происходит выбор категории запроса. По нажатию на кнопку "Откликнуться" происходит переход к экрану отклика.
+А по "Добавить запрос" - переход к составлению запроса.
 <div>
-<img src="https://pp.userapi.com/c845324/v845324793/1bd12a/SpyWCq8vhUI.jpg" width="40%"/>
-    </div>
+    <img src="https://pp.userapi.com/c845324/v845324793/1bd12a/SpyWCq8vhUI.jpg" width="40%"/>
+    <img src="https://pp.userapi.com/c845324/v845324793/1bd19f/PLqBL61mtHg.jpg" width="40%"/>
+</div>
+   
       
+Экран отклика на запрос другого пользователя. В верхней части описание запроса, в нижней осталяется ответ.
+В ответ можно включить фотографии.
+<div>
+    <img src="https://pp.userapi.com/c852124/v852124701/d0dc2/_bcXg6UoUME.jpg" width="40%"/>
+    <img src="https://pp.userapi.com/c852124/v852124701/d0dcc/yD5AbP7WlO0.jpg" width="40%"/>
+    <img src="https://pp.userapi.com/c852124/v852124701/d0dd6/vS68bldzOlA.jpg" width="40%"/>
+</div>
+   
+Экран "Добавить запрос"
+<div>
+   <img src="https://pp.userapi.com/c845324/v845324793/1bd17a/PoPtPp2gOR0.jpg" width="40%"/>
+   <img src="https://pp.userapi.com/c852124/v852124701/d0dfd/WRtVwp4116A.jpg" width="40%"/>
+   <img src="https://pp.userapi.com/c845324/v845324793/1bd184/mPlMR6LqQWM.jpg" width="40%"/>
+</div>
+
+Экран "Мои запросы" показывает состояние запросов созданных пользователем
+
+
 
 # Структура проекта:
 
