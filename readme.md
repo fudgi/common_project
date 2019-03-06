@@ -24,10 +24,10 @@
     
 Экран логина
 <div>
-    <img src="https://pp.userapi.com/c845324/v845324793/1bd1bd/o34R1LVMxHo.jpg" width="50%"/>
-    <img src="https://pp.userapi.com/c845324/v845324793/1bd1c7/i6Z_9joPjig.jpg" width="50%"/>
-    <img src="https://pp.userapi.com/c845324/v845324793/1bd1d1/Z8SKld_TcYA.jpg" width="50%"/>
-    <img src="https://pp.userapi.com/c845324/v845324793/1bd1db/OjlsfIOrp2g.jpg" width="50%"/>
+    <img src="https://pp.userapi.com/c845324/v845324793/1bd1bd/o34R1LVMxHo.jpg" width="40%"/>
+    <img src="https://pp.userapi.com/c845324/v845324793/1bd1c7/i6Z_9joPjig.jpg" width="40%"/>
+    <img src="https://pp.userapi.com/c845324/v845324793/1bd1d1/Z8SKld_TcYA.jpg" width="40%"/>
+    <img src="https://pp.userapi.com/c845324/v845324793/1bd1db/OjlsfIOrp2g.jpg" width="40%"/>
 </div>
 
 Структура проекта:
