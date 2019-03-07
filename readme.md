@@ -1,5 +1,5 @@
 
-:pencil2: &nbsp; Проект находится работе. Ознакомиться можно по [ссылке](http://a0282038.xsph.ru)
+:pencil2: &nbsp; Проект находится работе. Ознакомиться можно по [ссылке](http://renthing.ru)
 # <img src="http://a0282038.xsph.ru/react-app-07/src/img/icons/logoSingle.svg">&nbsp;Renthings
 
 &nbsp;&nbsp;Проект интернет-площадки для обмена и аренды вещей.
