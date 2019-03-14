@@ -22,6 +22,7 @@ export const icons = {
    star_half: '/react-app-07/src/img/icons/star_half.svg',
    star: '/react-app-07/src/img/icons/star.svg',
    twitter_logo: '/react-app-07/src/img/icons/twitter_logo.svg',
+   unknown_avatar: '/react-app-07/src/img/user_avatar/unknown.svg',
    vk_logo: '/react-app-07/src/img/icons/vk_logo.svg',
    youtube_logo: '/react-app-07/src/img/icons/youtube_logo.svg'
 };

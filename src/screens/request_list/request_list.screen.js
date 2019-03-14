@@ -2,7 +2,9 @@ import React from 'react'
 
 import Category from './category'
 import Filter from './filter_top'
-import RequestComponent from './request_component'
+import Component_AR from './components_in_list/component_AR'
+import Component_MRQ from './components_in_list/component_MRQ'
+import Component_MRS from './components_in_list/component_MRS'
 import Loading from '../common_components/loading'
 import Fetch from '../service/fetch'
 import { withRouter } from 'react-router-dom'
@@ -55,14 +57,18 @@ class RequestList extends React.Component {
         }
         Fetch.getData(path, {selected_category:this.state.selected_category})
         .then((result) => this.setState({isLoaded: true, items: result, error: null}))
-        .catch((error) => error(this))
+        .catch((error) => {
+            error(this)
+            this.setState({isLoaded: true, error: true})
+        })
     }
     
     render() {
         let Sidebar, filter;
+        let path = this.props.location.pathname;
         const { error, isLoaded } = this.state;
-
-        if(this.props.location.pathname == "/all_requests"){
+        
+        if(path == "/all_requests"){
             Sidebar = <Category 
                         categoryChange={this.categoryChange} 
                         selected_category={this.state.selected_category}
@@ -75,16 +81,25 @@ class RequestList extends React.Component {
         }
 
         if (error) {
-            return <div className="d-flex justify-content-center mt-3">Отсутствуют данные для отображения</div>;
+            let text;
+            switch(path){
+                case "/all_requests":
+                    text = "Нет запросов для отображения";
+                    break;
+                case "/my_requests":
+                    text = "Вы пока не добавили ни одного запроса";
+                    break;
+                case "/my_responds":
+                    text = "Вы пока что не откликнулись ни на один запрос";
+                    break;
+            }
+            return <div className="d-flex justify-content-center mt-3">{text}</div>;
         } 
         else if (!isLoaded) {
             return <Loading />
         }
         else {
-            let categoryToggled = "mt-2";
-            if(this.state.categorySelectorOpened == true) {
-                categoryToggled = "mt-2 toggled";
-            }
+            let categoryToggled = this.state.categorySelectorOpened == true? "mt-2 toggled":"mt-2";
             return (
                 <main className={categoryToggled} id="wrapper">
                     {Sidebar}
@@ -93,7 +108,14 @@ class RequestList extends React.Component {
                             {filter}
                             <div className="request-list">
                                 {this.state.items.map(item => {
-                                    return <RequestComponent key={item.request_id} type={this.props.location.pathname}  data={item}/>
+                                    switch(path){
+                                        case "/all_requests":
+                                            return <Component_AR key={item.request_id} type={this.props.location.pathname}  data={item}/>
+                                        case "/my_requests":
+                                            return <Component_MRQ key={item.request_id} type={this.props.location.pathname}  data={item}/>
+                                        case "/my_responds":
+                                            return <Component_MRS key={item.request_id} type={this.props.location.pathname}  data={item}/>
+                                    }
                                 })}
                             </div>
                         </div>  

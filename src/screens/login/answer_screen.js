@@ -8,7 +8,7 @@ class Answer extends React.Component{
         let message, title;
         if(this.props.type==1){
             title = "Регистрация";
-            message = "На ваш электронный адрес отправлена инструкция для подтверждения";
+            message = "Подтерждения электронного адреса пока что не требуется. Можете заходить";
         }
         else {
             title = "Восстановление пароля";

@@ -7,9 +7,9 @@ class NavBar extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            user_name: "",
+            user_name: "Имя пользователя",
             user_location: "Казань",
-            user_avatar: ""
+            user_avatar: icons.unknown_avatar
         }
         this.LeaveProfile = this.LeaveProfile.bind(this);
     }
@@ -20,8 +20,13 @@ class NavBar extends React.Component {
     }
 
     componentDidMount(){
-        Fetch.getData('/react-app-07/src/php/navbar.php',"")
-        .then((res) => this.setState({user_name:res.username, user_avatar: res.photo}))
+        Fetch.getData('/react-app-07/src/php/navbar.php')
+        .then((res) => {
+            let user_data = {};
+            if(res.username != null) user_data["user_name"] = res.username;
+            if(res.user_avatar != null) user_data["user_avatar"] = res.photo;
+            this.setState(user_data);
+        })
         .catch((error) => error(this))
     }
     
@@ -50,7 +55,7 @@ class NavBar extends React.Component {
                     </a>
 
                     <div className='container-fluid justify-content-around d-sm-none'>
-                        <a href="" className="">
+                        <a href="">
                             <img src={icons.logoSingle}/>
                         </a>
 

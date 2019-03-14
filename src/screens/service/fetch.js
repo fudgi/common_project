@@ -3,7 +3,6 @@ class DataSend{
     static getData(path, data){
         let dataToSend ={
                             method: "POST",
-                            // credentials: "same-origin",
                             body:JSON.stringify(data)
                         };
         return fetch(path, dataToSend)
@@ -14,7 +13,7 @@ class DataSend{
             })
             .catch((error) => {
                 if(error == "not logged in") throw function (putContext){putContext.props.history.push("/login")};
-                else throw () => alert(error)
+                else throw () => console.log(error)
             })
     }
 }

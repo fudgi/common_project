@@ -31,7 +31,7 @@ class ForgetPassword extends React.Component{
         }
         Fetch.getData('/react-app-07/src/php/login/forget_password.php', {email: this.state.email})
         .then(() => this.setState({calledAnswerScreen: true}))
-        .catch(() => alert("Ошибка"))
+        .catch((error) => error())
     }
 
     render(){

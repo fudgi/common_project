@@ -32,11 +32,8 @@ class Register extends React.Component{
             return;
         }
         Fetch.getData('/react-app-07/src/php/login/register.php', {email: this.state.email, password: this.state.password})
-        .then((res) => {
-            if(res.status == "OK") this.setState({calledAnswerScreen: true})
-            else throw res.data
-        })
-        .catch((error) => alert(error))
+        .then((res) => this.setState({calledAnswerScreen: true}))
+        .catch((error) => error())
     }
     
     handleChange(data) {
@@ -54,7 +51,7 @@ class Register extends React.Component{
 
     render(){
         let content = this.state.calledAnswerScreen? 
-        <AnswerScreen type={2} /> 
+        <AnswerScreen type={1} /> 
         :
         (<React.Fragment>
             <Title title="Регистрация"/>
