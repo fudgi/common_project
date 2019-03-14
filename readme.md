@@ -1,6 +1,6 @@
 
 :pencil2: &nbsp; Проект находится работе. Ознакомиться можно по [ссылке](http://renthing.ru)
-# <img src="http://a0282038.xsph.ru/react-app-07/src/img/icons/logoSingle.svg">&nbsp;Renthings
+# <img src="https://github.com/fudgi/common_project/blob/master/src/img/icons/logoSingle.svg">&nbsp;Renthings
 
 &nbsp;&nbsp;Проект интернет-площадки для обмена и аренды вещей.
 Например, нужна дрель или перфоратор, чтобы просверлить отверстия в стене.
